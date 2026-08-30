@@ -1,4 +1,4 @@
-# AgentSpec Knowledge Base
+# ChongTech Agent Data Pipeline Knowledge Base
 
 > The structured knowledge layer that grounds every agent response in verified, domain-specific content.
 
@@ -10,7 +10,7 @@
 
 ## How KB Works — KB-First Architecture
 
-Every AgentSpec agent follows **KB-First Resolution**: local knowledge is always checked before external sources. This is mandatory, not optional.
+Every ChongTech Agent Data Pipeline agent follows **KB-First Resolution**: local knowledge is always checked before external sources. This is mandatory, not optional.
 
 ### Resolution Order
 

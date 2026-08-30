@@ -1,16 +1,16 @@
 # Agent Overrides — Local-First Resolution
 
-AgentSpec ships with 58 specialized agents, but every team has its own conventions. Rather than forking the plugin to customize phase behavior, you can drop a local agent file into your repo and it will take precedence over the plugin version.
+ChongTech Agent Data Pipeline ships with 58 specialized agents, but every team has its own conventions. Rather than forking the plugin to customize phase behavior, you can drop a local agent file into your repo and it will take precedence over the plugin version.
 
 ## The Resolution Rule
 
 ```text
 .claude/agents/<category>/<name>.md   ← your override (wins)
         ↓ if absent
-${CLAUDE_PLUGIN_ROOT}/agents/<category>/<name>.md   ← AgentSpec plugin (fallback)
+${CLAUDE_PLUGIN_ROOT}/agents/<category>/<name>.md   ← ChongTech Agent Data Pipeline plugin (fallback)
 ```
 
-This is enforced by **Claude Code's native plugin loader** — when an agent name appears in both the user's project and a plugin, the user's version is what gets invoked. AgentSpec relies on this default rather than implementing a parallel resolver.
+This is enforced by **Claude Code's native plugin loader** — when an agent name appears in both the user's project and a plugin, the user's version is what gets invoked. ChongTech Agent Data Pipeline relies on this default rather than implementing a parallel resolver.
 
 ## When to Override
 
@@ -33,7 +33,7 @@ This is enforced by **Claude Code's native plugin loader** — when an agent nam
 └── custom/         ← drop new agents here that don't replace anything
 ```
 
-To override an existing AgentSpec agent:
+To override an existing ChongTech Agent Data Pipeline agent:
 
 ```bash
 # 1. Find the plugin agent
@@ -51,7 +51,7 @@ The `name:` field in frontmatter must match the plugin agent's name exactly. Tha
 
 ## How to Add a Custom Agent
 
-For agents that don't replace anything in AgentSpec — drop them in `custom/`:
+For agents that don't replace anything in ChongTech Agent Data Pipeline — drop them in `custom/`:
 
 ```yaml
 ---
@@ -70,7 +70,7 @@ Custom agents become available immediately to phase commands (`/build` will rout
 
 ## What This Doesn't Change
 
-- **The router** (`generate-agent-router.py`, `routing.json`) is a build-time artifact for the AgentSpec plugin itself. It doesn't index your local agents — Claude Code's runtime loader handles that.
+- **The router** (`generate-agent-router.py`, `routing.json`) is a build-time artifact for the ChongTech Agent Data Pipeline plugin itself. It doesn't index your local agents — Claude Code's runtime loader handles that.
 - **WORKFLOW_CONTRACTS.yaml** still defines the contract between phases. Overriding `build-agent` doesn't change *what* `/build` requires as input or output, only *how* the agent fulfills it.
 - **KB domains** are not overridden by this mechanism. To customize KB content, fork the relevant `kb/<domain>/` files into your project and reference them from your override agent.
 
@@ -81,5 +81,5 @@ After dropping an override, you can confirm it's active by running the agent and
 ## Related
 
 - [.claude/sdd/architecture/WORKFLOW_CONTRACTS.yaml](../../.claude/sdd/architecture/WORKFLOW_CONTRACTS.yaml) — the formal phase contracts
-- [.claude/agents/README.md](../../.claude/agents/README.md) — auto-generated quick reference (lives in user projects, not the AgentSpec repo)
+- [.claude/agents/README.md](../../.claude/agents/README.md) — auto-generated quick reference (lives in user projects, not the ChongTech Agent Data Pipeline repo)
 - [docs/concepts/README.md](README.md) — overall mental model

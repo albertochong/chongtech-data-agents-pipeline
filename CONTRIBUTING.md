@@ -1,13 +1,13 @@
-# Contributing to AgentSpec
+# Contributing to ChongTech Agent Data Pipeline
 
-Thank you for your interest in AgentSpec! This guide will help you contribute effectively.
+Thank you for your interest in ChongTech Agent Data Pipeline! This guide will help you contribute effectively.
 
 ## Quick Start
 
 ```bash
 # Fork and clone
-git clone https://github.com/YOUR_USERNAME/agentspec.git
-cd agentspec
+git clone https://github.com/YOUR_USERNAME/chongtech-data-agents-pipeline.git
+cd chongtech-data-agents-pipeline
 git checkout -b feature/your-feature
 
 # The framework lives in .claude/
@@ -116,7 +116,7 @@ See existing skills (`visual-explainer`, `excalidraw-diagram`) for examples, and
 
 ## Bug Fixes
 
-1. Check [existing issues](https://github.com/luanmorenommaciel/agentspec/issues)
+1. Check [existing issues](https://github.com/albertochong/chongtech-data-agents-pipeline/issues)
 2. Create a branch: `git checkout -b fix/description`
 3. Make your fix
 4. Submit a PR with a clear description of the problem and solution
@@ -141,12 +141,25 @@ See existing skills (`visual-explainer`, `excalidraw-diagram`) for examples, and
 
 ## Plugin Development
 
-AgentSpec is distributed as a Claude Code plugin. The development workflow:
+ChongTech Agent Data Pipeline is distributed as a Claude Code plugin. The development workflow:
 
 1. **Develop in `.claude/`** — this is the source of truth
-2. **Build the plugin** — run `bash build-plugin.sh` to generate `plugin/`
+2. **Build the plugin** — run `bash build-plugin.sh` (or `make build`) to generate `plugin/`
 3. **Test locally** — run `claude --plugin-dir ./plugin`
 4. **Iterate** — make changes in `.claude/`, rebuild, reload with `/reload-plugins`
+
+### Pre-Push Validation (activates automatically — nothing to run separately)
+
+There is no extra setup step to remember. `make build`, `make test`, and `make check`
+all depend on `install-hooks`, so the very first one you run — which you'd run anyway,
+per the workflow above — silently points git at the repo's versioned hooks in
+`scripts/git-hooks/` (via `git config core.hooksPath`). From then on, every `git push`
+automatically rebuilds `plugin/` and runs the test suite first — the same checks CI
+would run, but *before* the push leaves your machine, not after. A stale `plugin/` or
+a failing test blocks the push with an explanation; a deliberate exception can bypass
+it with `git push --no-verify`. The hook script itself lives at
+`scripts/git-hooks/pre-push` if you want to read or extend it, and `make install-hooks`
+still works standalone if you want to activate it without a full build.
 
 ### Key Concepts
 
@@ -168,11 +181,36 @@ If you create something that only exists in the plugin (not in `.claude/`), add 
 - Hooks → `plugin-extras/hooks/hooks.json`
 - Scripts → `plugin-extras/scripts/{script-name}.sh`
 
+### Dev Tooling Reference
+
+Everything outside `.claude/`, `plugin/`, and `plugin-extras/` supports the build/release
+process rather than being part of the distributed plugin itself. A visual walkthrough of
+how it all connects is in [`pipeline-diagram.html`](pipeline-diagram.html) (open it directly
+in a browser); the short version:
+
+| Path | What it's for | Runs |
+|---|---|---|
+| `scripts/generate-agent-router.py` | Regenerates the agent-router skill from agent frontmatter | Automatically, as part of `build-plugin.sh` / `make build` |
+| `scripts/judge.py` | Backend for the `/judge` command — sends a spec to another model via OpenRouter for a second opinion | On demand, when a user runs `/judge` inside Claude Code — never part of the build |
+| `scripts/bump.sh` | Version-bump gate — checks `plugin.json`/`marketplace.json` version was correctly incremented | Manually (`bash scripts/bump.sh --check`) or automatically via `bump-gate.yml` on PRs |
+| `scripts/git-hooks/pre-push` | The pre-push validation hook described above | Automatically on `git push`, once `make install-hooks` has been run |
+| `tests/` | Pytest suite for `scripts/generate-agent-router.py` and `scripts/judge.py` (pure-function tests, no network calls) | `make test` |
+| `tools/spec-linter`, `tools/spec-judge` | Independent Python packages (own `pyproject.toml`) — the contract Linter and behavioral Judger used by the SDD phase commands; copied into `plugin/tools/` during build | `make spec-lint` / `make spec-judge`; used at runtime by `/design --judge`, `/build --judge`, etc. |
+| `.github/workflows/quality-checks.yml` | Runs `pytest`, agent-router drift check, `shellcheck`, and the `tools/` test suites | Automatically on push/PR |
+| `.github/workflows/plugin-validate.yml` | Rebuilds the plugin and validates `plugin.json`/`marketplace.json`, checks for unrewritten `.claude/` paths, counts agents/skills/KBs | Automatically on push/PR touching `.claude/`, `plugin-extras/`, or `build-plugin.sh` |
+| `.github/workflows/bump-gate.yml` | Runs `scripts/bump.sh --check` | Automatically on PRs into `main`/`develop` |
+| `.github/workflows/e2e.yml` | Installs the built plugin via a real Claude Code CLI in a sandboxed `HOME` and asserts it matches `plugin/` | Automatically on push/PR |
+
+None of the `.github/workflows/*.yml` files are ever run manually — GitHub Actions triggers
+them on `push`/`pull_request` after code reaches the remote. Everything else in this table is
+either invoked directly by you, or invoked automatically by `build-plugin.sh`/the pre-push
+hook on your own machine, before anything is sent to GitHub.
+
 ## Code of Conduct
 
 We follow the [Contributor Covenant](https://www.contributor-covenant.org/). Be respectful, constructive, and inclusive.
 
 ## Questions?
 
-- [Open an issue](https://github.com/luanmorenommaciel/agentspec/issues)
-- [Start a discussion](https://github.com/luanmorenommaciel/agentspec/discussions)
+- [Open an issue](https://github.com/albertochong/chongtech-data-agents-pipeline/issues)
+- [Start a discussion](https://github.com/albertochong/chongtech-data-agents-pipeline/discussions)

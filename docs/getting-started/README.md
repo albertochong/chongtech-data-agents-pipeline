@@ -1,4 +1,4 @@
-# Getting Started with AgentSpec
+# Getting Started with ChongTech Agent Data Pipeline
 
 Get from zero to your first spec-driven data pipeline in 10 minutes.
 
@@ -12,22 +12,22 @@ Get from zero to your first spec-driven data pipeline in 10 minutes.
 ### Option 1: Install as Plugin (Recommended)
 
 ```bash
-claude plugin marketplace add luanmorenommaciel/agentspec
-claude plugin install agentspec
+claude plugin marketplace add albertochong/chongtech-data-agents-pipeline
+claude plugin install chongtech-agent-data-pipeline
 ```
 
 Or test locally:
 
 ```bash
-git clone https://github.com/luanmorenommaciel/agentspec.git
-claude --plugin-dir ./agentspec/plugin
+git clone https://github.com/albertochong/chongtech-data-agents-pipeline.git
+claude --plugin-dir ./chongtech-data-agents-pipeline/plugin
 ```
 
 ### Option 2: Copy Framework (Legacy)
 
 ```bash
-git clone https://github.com/luanmorenommaciel/agentspec.git
-cp -r agentspec/.claude your-project/.claude
+git clone https://github.com/albertochong/chongtech-data-agents-pipeline.git
+cp -r chongtech-data-agents-pipeline/.claude your-project/.claude
 ```
 
 ## Initialize Your Project
@@ -75,7 +75,7 @@ Explore your idea through guided dialogue:
 claude> /brainstorm "Daily orders pipeline from Postgres to Snowflake with star schema"
 ```
 
-AgentSpec asks targeted questions about source systems, volumes, freshness SLAs, and consumer needs. Output: `BRAINSTORM_ORDERS_PIPELINE.md`
+ChongTech Agent Data Pipeline asks targeted questions about source systems, volumes, freshness SLAs, and consumer needs. Output: `BRAINSTORM_ORDERS_PIPELINE.md`
 
 ### Step 2: Define Requirements
 
@@ -116,7 +116,7 @@ Execute the implementation with agent delegation:
 claude> /build ORDERS_PIPELINE
 ```
 
-AgentSpec delegates dbt models to `@dbt-specialist`, DAGs to `@airflow-specialist`, Spark jobs to `@spark-engineer`, and quality checks to `@data-quality-analyst`. Verification includes `dbt build`, `sqlfluff lint`, and data quality assertions. Output: `BUILD_REPORT_ORDERS_PIPELINE.md`
+ChongTech Agent Data Pipeline delegates dbt models to `@dbt-specialist`, DAGs to `@airflow-specialist`, Spark jobs to `@spark-engineer`, and quality checks to `@data-quality-analyst`. Verification includes `dbt build`, `sqlfluff lint`, and data quality assertions. Output: `BUILD_REPORT_ORDERS_PIPELINE.md`
 
 ### Step 5: Ship
 
@@ -152,7 +152,7 @@ claude> /data-contract "Contract between orders team and analytics"
 
 ## Customizing Agents
 
-Every team has its own conventions. AgentSpec lets you override any of the 58 plugin agents locally without forking — drop a file with the same name into `.claude/agents/<category>/` and it takes precedence.
+Every team has its own conventions. ChongTech Agent Data Pipeline lets you override any of the 58 plugin agents locally without forking — drop a file with the same name into `.claude/agents/<category>/` and it takes precedence.
 
 When the SessionStart hook runs for the first time, it scaffolds:
 

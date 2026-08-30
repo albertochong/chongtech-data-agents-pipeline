@@ -195,7 +195,7 @@ Detecting project health...
 
 # Project Status Report
 
-**Project:** agentspec
+**Project:** chongtech-data-agents-pipeline
 **Branch:** feat/judge-layer
 **Date:** 2026-04-14
 

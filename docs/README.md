@@ -1,4 +1,4 @@
-# AgentSpec Documentation
+# ChongTech Agent Data Pipeline Documentation
 
 > Everything you need to build data pipelines with Spec-Driven Development.
 
@@ -30,5 +30,5 @@
 
 ## Need Help?
 
-- [GitHub Issues](https://github.com/luanmorenommaciel/agentspec/issues) -- Bug reports
-- [Discussions](https://github.com/luanmorenommaciel/agentspec/discussions) -- Questions and ideas
+- [GitHub Issues](https://github.com/albertochong/chongtech-data-agents-pipeline/issues) -- Bug reports
+- [Discussions](https://github.com/albertochong/chongtech-data-agents-pipeline/discussions) -- Questions and ideas

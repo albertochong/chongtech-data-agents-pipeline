@@ -24,7 +24,7 @@ description: Archive completed feature with lessons learned (Phase 4)
 
 ## Overview
 
-This is **Phase 4** — the close of the 5-phase AgentSpec workflow:
+This is **Phase 4** — the close of the 5-phase ChongTech Agent Data Pipeline workflow:
 
 ```text
 Phase 0: /brainstorm → .claude/sdd/features/BRAINSTORM_{FEATURE}.md (optional)

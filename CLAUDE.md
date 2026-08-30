@@ -1,12 +1,52 @@
-# AgentSpec Development
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+# ChongTech Agent Data Pipeline Development
 
 > Spec-Driven Development framework for Data Engineering on Claude Code
 
 ---
 
+## Development Commands
+
+```bash
+make help          # list all Makefile targets
+make build          # full plugin build: tests + regen agent-router + package plugin/ (runs build-plugin.sh)
+make test           # pytest suite (tests/, 27 tests)
+make check          # drift check — tests + generate-agent-router.py --check (read-only, no writes)
+make lint           # shellcheck (-S warning) on build-plugin.sh, share.sh, init-workspace.sh
+make generate       # regenerate .claude/skills/agent-router/{SKILL.md,routing.json} from agent frontmatter
+make clean          # remove generated plugin/ artifacts (keeps plugin/.claude-plugin/)
+```
+
+Single test:
+
+```bash
+python3 -m pytest tests/test_generate_agent_router.py -v
+python3 -m pytest tests/test_generate_agent_router.py::test_name -v
+```
+
+`tools/spec-linter` and `tools/spec-judge` are independent Python packages (own `pyproject.toml`, not part of the root `tests/` suite):
+
+```bash
+make spec-lint                                    # or: cd tools/spec-linter && python3 -m pytest -v
+make spec-judge                                    # or: cd tools/spec-judge  && python3 -m pytest -v
+```
+
+Version-bump gate (CI-enforced on PRs into `main`/`develop`; validate-only, no `--apply` — see `scripts/bump.sh` header):
+
+```bash
+bash scripts/bump.sh --check
+```
+
+**After touching anything under `.claude/`, `plugin-extras/`, or `build-plugin.sh`**, run `make build` (or `./build-plugin.sh`) and check `git diff plugin/ .claude-plugin/` before committing — `plugin/` is generated output and CI's plugin-mirror-drift check (`quality-checks.yml`) fails the PR if it doesn't match `.claude/`.
+
+---
+
 ## Project Context
 
-**What is AgentSpec?** A Claude Code plugin that provides structured AI-assisted development through a 5-phase SDD workflow, specialized for data engineering with 58 agents, 31 commands, 24 KB domains, and 20 skills (16 distributed in the plugin + 4 repo-local).
+**What is ChongTech Agent Data Pipeline?** A Claude Code plugin that provides structured AI-assisted development through a 5-phase SDD workflow, specialized for data engineering with 58 agents, 31 commands, 24 KB domains, and 20 skills (16 distributed in the plugin + 4 repo-local).
 
 **Component model (canonical: `.claude/kb/shared/component-model.md`):**
 
@@ -26,7 +66,7 @@ New logic goes to the layer that owns it — the `component-model` skill walks t
 ## Repository Structure
 
 ```text
-agentspec/
+chongtech-data-agents-pipeline/
 ├── .claude/                 # Claude Code integration
 │   ├── agents/              # 58 specialized agents
 │   │   ├── architect/       # 8 system-level design agents
@@ -124,9 +164,19 @@ agentspec/
 
 ---
 
+## Architecture: source → build → distribution
+
+`.claude/` is the source of truth; `plugin/` is generated, never hand-edited. `build-plugin.sh` copies `.claude/` into `plugin/`, rewrites internal paths from `.claude/...` to `${CLAUDE_PLUGIN_ROOT}/...` (while preserving workspace-relative paths like `.claude/sdd/features`), merges in `plugin-extras/` (plugin-only content such as `data-engineering-guide` and hooks), and excludes repo-local skills (`REPO_LOCAL_SKILLS` in `build-plugin.sh`: `create-skill`, `create-agent`, `meeting-analysis`, `standup-report`) that aren't shipped to end users. `scripts/generate-agent-router.py` regenerates the agent-router skill from agent frontmatter as part of the same build. CI (`quality-checks.yml`) re-runs the build and diffs `plugin/` + `.claude-plugin/` against the commit — a stale `plugin/` fails the PR.
+
+`tools/spec-linter` and `tools/spec-judge` (the Linter and the Judger, ADR-002/003) are a deliberate fifth category the component model above does *not* classify: standalone Python engines with their own `pyproject.toml` and pytest suites, consumed by the instruction layers via CLI invocation or contract-file wiring rather than being an agent/skill/command/KB themselves. `spec_judge` depends on `spec_linter` at runtime but never via pip — only through the `spec-judge` wrapper script's `PYTHONPATH` or an editable co-install in dev.
+
+Release versioning is a separate gate from plugin correctness: `scripts/bump.sh --check` (wired into `bump-gate.yml`) enforces that a PR into `main` carrying `plugin/`/`.claude-plugin/` changes bumps the version strictly above `origin/main`, while a PR into `develop` must leave the version equal to `origin/main` (only a release PR, `develop → main`, advances it). There's no `--apply`; bumps are hand-edited in `plugin/.claude-plugin/plugin.json` + `marketplace.json`, then synced with `./build-plugin.sh`. `e2e.yml` goes one step further and installs the built plugin into a real Claude Code CLI via `claude plugin marketplace add` / `install` in a sandboxed `HOME`, to catch install-mechanics breakage the unit tests can't see.
+
+---
+
 ## Development Workflow
 
-Use AgentSpec's own SDD workflow to develop AgentSpec:
+Use ChongTech Agent Data Pipeline's own SDD workflow to develop ChongTech Agent Data Pipeline:
 
 ```bash
 # Explore an enhancement idea

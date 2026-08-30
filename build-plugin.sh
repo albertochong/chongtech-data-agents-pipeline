@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # =============================================================================
-# AgentSpec Plugin Builder
+# ChongTech Agent Data Pipeline Plugin Builder
 # =============================================================================
 # Packages .claude/ (source of truth) into plugin/ (distributable plugin).
 # Rewrites internal paths from .claude/ to ${CLAUDE_PLUGIN_ROOT}/ while
@@ -40,7 +40,7 @@ trap cleanup EXIT
 
 if [[ "${1:-}" == "--help" ]] || [[ "${1:-}" == "-h" ]]; then
     cat <<'EOF'
-AgentSpec Plugin Builder
+ChongTech Agent Data Pipeline Plugin Builder
 
 Packages .claude/ (source of truth) into plugin/ (distributable plugin).
 Rewrites internal paths to ${CLAUDE_PLUGIN_ROOT}/ and merges plugin-extras/.
@@ -66,7 +66,7 @@ if [[ ! -f "${PLUGIN_DIR}/.claude-plugin/plugin.json" ]]; then
     exit 1
 fi
 
-info "Building AgentSpec plugin from .claude/ ..."
+info "Building ChongTech Agent Data Pipeline plugin from .claude/ ..."
 
 # ─── Step 0: Run Python tests ────────────────────────────────────────────────
 # Fail fast if scripts/judge.py or scripts/generate-agent-router.py regress.
@@ -260,9 +260,9 @@ ok "Paths rewritten"
 
 # ─── Step 5: Rewrite hardcoded absolute paths ────────────────────────────────
 # After Step 4, some paths may look like:
-#   /Users/username/GitHub/agentspec/${CLAUDE_PLUGIN_ROOT}/skills/...
+#   /Users/username/GitHub/chongtech-data-agents-pipeline/${CLAUDE_PLUGIN_ROOT}/skills/...
 # We need to strip the absolute prefix, leaving just ${CLAUDE_PLUGIN_ROOT}/...
-# Also catch any remaining /Users/.../agentspec/.claude/ patterns.
+# Also catch any remaining /Users/.../chongtech-data-agents-pipeline/.claude/ patterns.
 
 info "Rewriting absolute paths..."
 while IFS= read -r -d '' file; do
@@ -377,7 +377,7 @@ fi
 
 echo ""
 echo "============================================"
-printf "${GREEN}AgentSpec Plugin Build Complete${NC}\n"
+printf "${GREEN}ChongTech Agent Data Pipeline Plugin Build Complete${NC}\n"
 echo "============================================"
 echo "  Agents:   ${AGENT_COUNT}"
 echo "  Commands: ${COMMAND_COUNT}"

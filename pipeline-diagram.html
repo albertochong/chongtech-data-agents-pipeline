@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipeline de Build &amp; CI — chongtech-agent-data-pipeline</title>
+<style>
+  :root {
+    --bg: #0f1420;
+    --panel: #171d2e;
+    --panel-2: #1e2538;
+    --border: #2c3550;
+    --text: #e7ebf5;
+    --muted: #93a0bd;
+    --manual: #4c8dff;
+    --manual-bg: #1a2740;
+    --auto: #35c56a;
+    --auto-bg: #14301f;
+    --support: #f5a524;
+    --support-bg: #332711;
+    --arrow: #4c5a80;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 32px 20px 80px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 {
+    font-size: 1.5rem;
+    margin: 0 0 4px;
+  }
+  .subtitle { color: var(--muted); margin: 0 0 28px; font-size: 0.95rem; }
+
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    padding: 14px 18px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.85rem;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .swatch { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .box {
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: var(--panel);
+    padding: 16px 18px;
+    min-width: 220px;
+    max-width: 320px;
+  }
+  .box h3 {
+    margin: 0 0 6px;
+    font-size: 0.98rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .box p { margin: 0; color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
+  .box code {
+    font-family: var(--mono);
+    background: rgba(255,255,255,0.06);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+  }
+
+  .box.manual { border-color: var(--manual); background: var(--manual-bg); }
+  .box.auto { border-color: var(--auto); background: var(--auto-bg); }
+  .box.support { border-color: var(--support); background: var(--support-bg); }
+  .box.neutral { border-color: var(--border); background: var(--panel-2); }
+
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot.manual { background: var(--manual); }
+  .dot.auto { background: var(--auto); }
+  .dot.support { background: var(--support); }
+
+  .arrow-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6px 0;
+  }
+  .arrow-col .line {
+    width: 2px;
+    height: 22px;
+    background: var(--arrow);
+  }
+  .arrow-col .label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 2px 10px;
+    border: 1px dashed var(--arrow);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .arrow-col .head {
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--arrow);
+  }
+
+  .support-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 10px 0 4px;
+    position: relative;
+  }
+  .support-row::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 1px;
+    height: 14px;
+    background: var(--arrow);
+  }
+  .support-title {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 26px 0 -2px;
+  }
+
+  .ci-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  footer code { font-family: var(--mono); }
+
+  table.cmds {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.82rem;
+  }
+  table.cmds th, table.cmds td {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  table.cmds th { color: var(--muted); font-weight: 600; }
+  table.cmds code { font-family: var(--mono); background: rgba(255,255,255,0.06); padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Pipeline de Build &amp; CI</h1>
+  <p class="subtitle">chongtech-agent-data-pipeline — do código fonte (<code>.claude/</code>) até à instalação por outros utilizadores</p>
+
+  <div class="legend">
+    <div class="legend-item"><span class="swatch" style="background:var(--manual)"></span> Manual — tu corres</div>
+    <div class="legend-item"><span class="swatch" style="background:var(--auto)"></span> Automático — corre sozinho no GitHub</div>
+    <div class="legend-item"><span class="swatch" style="background:var(--support)"></span> Apoio — testado/usado pelos passos acima</div>
+  </div>
+
+  <div class="flow">
+
+    <div class="row">
+      <div class="box manual">
+        <h3><span class="dot manual"></span> Fonte</h3>
+        <p><code>.claude/</code> + <code>plugin-extras/</code><br>
+        Onde tu editas agentes, skills, comandos, KBs.</p>
+      </div>
+    </div>
+
+    <div class="arrow-col">
+      <div class="line"></div>
+      <div class="label"><code>make build</code> / <code>bash build-plugin.sh</code></div>
+      <div class="line"></div>
+      <div class="head"></div>
+    </div>
+
+    <div class="support-title">enquanto o build corre, usa</div>
+    <div class="support-row">
+      <div class="box support">
+        <h3><span class="dot support"></span> scripts/generate-agent-router.py</h3>
+        <p>Regenera o routing dos agentes a partir do frontmatter. Chamado automaticamente pelo build.</p>
+      </div>
+      <div class="box support">
+        <h3><span class="dot support"></span> tools/spec-linter · spec-judge</h3>
+        <p>Motores Python independentes, copiados para dentro de <code>plugin/tools/</code>.</p>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:22px">
+      <div class="box neutral">
+        <h3>📦 plugin/</h3>
+        <p>Output gerado — o que é <strong>distribuído</strong>. Nunca editado à mão (exceto <code>plugin/.claude-plugin/</code>).</p>
+      </div>
+    </div>
+
+    <div class="arrow-col">
+      <div class="line"></div>
+      <div class="label"><code>make test</code> (opcional, recomendado)</div>
+      <div class="line"></div>
+      <div class="head"></div>
+    </div>
+
+    <div class="row">
+      <div class="box support">
+        <h3><span class="dot support"></span> tests/</h3>
+        <p>Testa <code>scripts/generate-agent-router.py</code> e <code>scripts/judge.py</code> — não testa o plugin em si.</p>
+      </div>
+    </div>
+
+    <div class="arrow-col">
+      <div class="line"></div>
+      <div class="label"><code>git add · commit · push</code></div>
+      <div class="line"></div>
+      <div class="head"></div>
+    </div>
+
+    <div class="row">
+      <div class="box manual">
+        <h3><span class="dot manual"></span> GitHub</h3>
+        <p>albertochong/chongtech-data-agents-pipeline<br>(repo remoto)</p>
+      </div>
+    </div>
+
+    <div class="arrow-col">
+      <div class="line"></div>
+      <div class="label">dispara sozinho, sem intervenção tua</div>
+      <div class="line"></div>
+      <div class="head"></div>
+    </div>
+
+    <div class="ci-grid">
+      <div class="box auto">
+        <h3><span class="dot auto"></span> quality-checks.yml</h3>
+        <p><code>pytest tests/</code>, drift do agent-router, <code>shellcheck</code>, testes do linter/judger</p>
+      </div>
+      <div class="box auto">
+        <h3><span class="dot auto"></span> plugin-validate.yml</h3>
+        <p>Valida <code>plugin.json</code>/<code>marketplace.json</code>, corre o build, confirma que não sobrou <code>.claude/</code> por reescrever</p>
+      </div>
+      <div class="box auto">
+        <h3><span class="dot auto"></span> bump-gate.yml</h3>
+        <p><code>scripts/bump.sh --check</code> — obriga a subir a versão antes de um PR entrar em <code>main</code></p>
+      </div>
+      <div class="box auto">
+        <h3><span class="dot auto"></span> e2e.yml</h3>
+        <p>Instala o plugin de verdade via Claude Code CLI num ambiente limpo e confirma que bateu certo</p>
+      </div>
+    </div>
+
+    <div class="arrow-col">
+      <div class="line"></div>
+      <div class="label">se tudo passar</div>
+      <div class="line"></div>
+      <div class="head"></div>
+    </div>
+
+    <div class="row">
+      <div class="box manual">
+        <h3><span class="dot manual"></span> Utilizador final</h3>
+        <p><code>claude plugin marketplace add albertochong/chongtech-data-agents-pipeline</code><br>
+        <code>claude plugin install chongtech-agent-data-pipeline</code></p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <strong>Comandos de referência</strong>
+    <table class="cmds">
+      <tr><th>Comando</th><th>O que faz</th><th>Quando</th></tr>
+      <tr><td><code>make build</code></td><td>Reconstrói <code>plugin/</code> a partir de <code>.claude/</code></td><td>Manual, depois de editar <code>.claude/</code></td></tr>
+      <tr><td><code>make test</code></td><td>Corre <code>pytest tests/</code></td><td>Manual, antes de commit</td></tr>
+      <tr><td><code>make check</code></td><td>Testes + verifica drift do agent-router (não escreve nada)</td><td>Manual</td></tr>
+      <tr><td><code>make spec-lint</code> / <code>spec-judge</code></td><td>Testa os motores em <code>tools/</code></td><td>Manual</td></tr>
+      <tr><td><code>bash scripts/bump.sh --check</code></td><td>Confirma que a versão foi incrementada</td><td>Manual, ou automático em <code>bump-gate.yml</code></td></tr>
+      <tr><td>workflows em <code>.github/</code></td><td>4 verificações descritas acima</td><td>Automático, a cada <code>push</code>/PR</td></tr>
+    </table>
+  </footer>
+
+</div>
+</body>
+</html>

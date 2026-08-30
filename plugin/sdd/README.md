@@ -1,4 +1,4 @@
-# AgentSpec
+# ChongTech Agent Data Pipeline
 
 > **Spec-Driven Development Framework for Data Engineering on Claude Code**
 >
@@ -10,7 +10,7 @@
 
 | Aspect | Details |
 |--------|---------|
-| **Project** | AgentSpec - Spec-Driven Development Framework |
+| **Project** | ChongTech Agent Data Pipeline - Spec-Driven Development Framework |
 | **Tagline** | Spec-Driven Development for Data Engineering |
 | **Business Problem** | Gap between unstructured "vibe coding" and stale traditional specifications |
 | **Solution** | 5-phase workflow with 58 specialized AI agents, 24 KB domains, and 31 commands |
@@ -19,11 +19,11 @@
 
 ### What This Is
 
-AgentSpec transforms requirements into working code with full traceability. It provides a structured 5-phase development workflow (Brainstorm -> Define -> Design -> Build -> Ship) powered by specialized AI agents that match to tasks automatically, grounded by curated knowledge bases for accuracy.
+ChongTech Agent Data Pipeline transforms requirements into working code with full traceability. It provides a structured 5-phase development workflow (Brainstorm -> Define -> Design -> Build -> Ship) powered by specialized AI agents that match to tasks automatically, grounded by curated knowledge bases for accuracy.
 
 **The Core Insight:** *"The AI doesn't just need to know WHAT to build - it needs to know WHO should build each part."*
 
-Traditional specs produce a task list. AgentSpec produces a **team assignment**.
+Traditional specs produce a task list. ChongTech Agent Data Pipeline produces a **team assignment**.
 
 ### Key Insights
 
@@ -47,7 +47,7 @@ Traditional specs produce a task list. AgentSpec produces a **team assignment**.
 9. [Open Questions](#open-questions)
 10. [Success Metrics](#success-metrics)
 11. [Anti-Patterns](#anti-patterns)
-12. [Extending AgentSpec](#extending-agentspec)
+12. [Extending ChongTech Agent Data Pipeline](#extending-chongtech-agent-data-pipeline)
 13. [Quick Start](#quick-start)
 14. [Quality Verification](#quality-verification)
 15. [References](#references)
@@ -183,7 +183,7 @@ Traditional specs produce a task list. AgentSpec produces a **team assignment**.
 
 ### 1. Technical Context Gathering (Define Phase)
 
-Traditional specs assume the AI knows where to put files. AgentSpec explicitly asks:
+Traditional specs assume the AI knows where to put files. ChongTech Agent Data Pipeline explicitly asks:
 
 | Question | Why It Matters |
 |----------|----------------|
@@ -263,7 +263,7 @@ Build invokes matched specialists via the Task tool:
 
 ## The Agent Ecosystem
 
-AgentSpec leverages an ecosystem of **58 specialized agents** across 8 categories:
+ChongTech Agent Data Pipeline leverages an ecosystem of **58 specialized agents** across 8 categories:
 
 ### By Category
 
@@ -317,7 +317,7 @@ Design phase matches agents using these keywords:
 
 ## Knowledge Base Integration
 
-AgentSpec integrates deeply with 24 curated Knowledge Base domains:
+ChongTech Agent Data Pipeline integrates deeply with 24 curated Knowledge Base domains:
 
 ### Available Domains
 
@@ -540,9 +540,9 @@ ${CLAUDE_PLUGIN_ROOT}/kb/{domain}/
 | DEFINE->DESIGN success rate | 95% | Phase progression |
 | BUILD rework rate | <8% | Iteration tracking |
 
-### Comparison: With vs Without AgentSpec
+### Comparison: With vs Without ChongTech Agent Data Pipeline
 
-| Dimension | Without AgentSpec | With AgentSpec |
+| Dimension | Without ChongTech Agent Data Pipeline | With ChongTech Agent Data Pipeline |
 |-----------|-------------------|----------------|
 | File placement | Random/guessed | Explicit in Technical Context |
 | Pattern consistency | Varies | KB-grounded (24 domains) |
@@ -582,7 +582,7 @@ You're about to make a mistake if:
 
 ---
 
-## Extending AgentSpec
+## Extending ChongTech Agent Data Pipeline
 
 ### Adding a New Agent
 
@@ -769,13 +769,13 @@ SCHEMA GOVERNANCE
 |---------|------|---------|
 | 2.1.0 | 2026-03-26 | Multi-cloud coverage: 58 agents across 8 categories, 23 KB domains |
 | 2.0.0 | 2026-03-26 | Data engineering pivot: 11 KB domains, 11 DE agents, 8 DE commands |
-| 1.0.0 | 2026-02-17 | Public release as AgentSpec v1.0.0 with 16 agents |
+| 1.0.0 | 2026-02-17 | Public release as ChongTech Agent Data Pipeline v1.0.0 with 16 agents |
 
 ---
 
 ## The Agentic-First Vision
 
-AgentSpec is designed for a future where:
+ChongTech Agent Data Pipeline is designed for a future where:
 
 1. **AI models are specialists** -- Not one-size-fits-all, but domain experts
 2. **Specifications are executable** -- Not just documentation, but orchestration
@@ -784,7 +784,7 @@ AgentSpec is designed for a future where:
 5. **Traceability is automatic** -- Every file has an owner, every decision has rationale
 6. **Data engineering is first-class** -- Pipelines, schemas, and quality are built-in concerns
 
-**AgentSpec is not just a specification framework. It's an AI team orchestration system for data engineering.**
+**ChongTech Agent Data Pipeline is not just a specification framework. It's an AI team orchestration system for data engineering.**
 
 ```text
 +-------------------------------------------------------------+
@@ -792,11 +792,11 @@ AgentSpec is designed for a future where:
 |   "Tell me WHAT to build, I'll figure out WHO should         |
 |    build it -- with the right data engineering patterns."    |
 |                                                               |
-|                         -- AgentSpec v2.1                     |
+|                         -- ChongTech Agent Data Pipeline v2.1                     |
 |                                                               |
 +-------------------------------------------------------------+
 ```
 
 ---
 
-*Document Updated: 2026-03-26 | AgentSpec v2.1.0*
+*Document Updated: 2026-03-26 | ChongTech Agent Data Pipeline v2.1.0*

@@ -1,6 +1,6 @@
 ---
 name: agent-router
-description: Intelligent agent routing -- automatically matches tasks to the best specialist agent based on file patterns, intent keywords, and domain context. Loaded every session to give Claude explicit routing rules for all 58 AgentSpec agents.
+description: Intelligent agent routing -- automatically matches tasks to the best specialist agent based on file patterns, intent keywords, and domain context. Loaded every session to give Claude explicit routing rules for all 58 ChongTech Agent Data Pipeline agents.
 ---
 
 <!-- =========================================================================

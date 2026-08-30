@@ -1,6 +1,6 @@
-# AgentSpec Architecture
+# ChongTech Agent Data Pipeline Architecture
 
-> Visual reference for the AgentSpec 5-phase development workflow
+> Visual reference for the ChongTech Agent Data Pipeline 5-phase development workflow
 
 ---
 
@@ -368,4 +368,4 @@ in `tools/spec-linter/USAGE.md`.
 | 3.3.0 | 2026-06-10 | Contract Enforcement (the Linter) — verdict semantics, contract sources, per-phase consumer bindings; phase agents declare document-validation binding |
 | 2.1.0 | 2026-03-26 | Updated folder structure for 58 agents, 8 categories, 23 KB domains |
 | 2.0.0 | 2026-03-26 | Data engineering pivot |
-| 1.0.0 | 2026-02-17 | Public release as AgentSpec v1.0.0 |
+| 1.0.0 | 2026-02-17 | Public release as ChongTech Agent Data Pipeline v1.0.0 |

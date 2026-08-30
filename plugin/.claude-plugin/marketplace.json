@@ -1,15 +1,15 @@
 {
-  "name": "agentspec",
+  "name": "chongtech-agent-data-pipeline",
   "metadata": {
     "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 31 commands, 5-phase SDD workflow"
   },
   "owner": {
-    "name": "Luan Moreno",
-    "email": "luan.moreno@owshq.com"
+    "name": "Alberto Chong",
+    "email": "alberto.carlos@chongtechnologies.com"
   },
   "plugins": [
     {
-      "name": "agentspec",
+      "name": "chongtech-agent-data-pipeline",
       "version": "3.5.0",
       "description": "Spec-Driven Development framework for Data Engineering — 58 agents, 24 KB domains, 5-phase SDD workflow, 31 commands",
       "source": "./",

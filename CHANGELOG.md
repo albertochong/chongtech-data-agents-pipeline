@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to AgentSpec will be documented in this file.
+All notable changes to ChongTech Agent Data Pipeline will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
@@ -10,10 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
-- **Marketplace install path now works end-to-end** (#18) — `claude plugin marketplace add luanmorenommaciel/agentspec` previously returned HTTP 404 because the resolver fetches `.claude-plugin/marketplace.json` from the repository root, but the manifest only existed under `plugin/.claude-plugin/`:
+- **Marketplace install path now works end-to-end** (#18) — `claude plugin marketplace add albertochong/chongtech-data-agents-pipeline` previously returned HTTP 404 because the resolver fetches `.claude-plugin/marketplace.json` from the repository root, but the manifest only existed under `plugin/.claude-plugin/`:
   - Added root-level `.claude-plugin/marketplace.json` with `source: "./plugin"` pointing at the canonical built artifact
   - Added `build-plugin.sh` Step 5c that auto-regenerates the root manifest from `plugin/.claude-plugin/marketplace.json` on every build, preventing drift between the two locations
-  - Verified: `https://raw.githubusercontent.com/luanmorenommaciel/agentspec/main/.claude-plugin/marketplace.json` now returns HTTP 200
+  - Verified: `https://raw.githubusercontent.com/albertochong/chongtech-data-agents-pipeline/main/.claude-plugin/marketplace.json` now returns HTTP 200
 - **`plugin/.claude-plugin/marketplace.json` schema fixed** (#17) — moved `description` into `metadata.description` to conform to the marketplace schema; the previous root-level `description` would have blocked publishing.
 - **Count reconciliation across all current-state documentation** (#17, #18) — filesystem had 24 KB domains and 31 commands while documentation still said 23 / 30 in many places. Synchronized `CLAUDE.md`, `README.md`, `CONTRIBUTING.md`, `plugin/.claude-plugin/plugin.json`, `plugin/.claude-plugin/marketplace.json`, `plugin/README.md`, `docs/README.md`, `docs/reference/README.md`, `docs/getting-started/README.md`, `docs/concepts/README.md`, `.claude/agents/README.md`, `.claude/commands/README.md`, `.claude/kb/README.md`, `.claude/kb/_index.yaml`, `.claude/sdd/README.md`, `.claude/sdd/_index.md` (mirrored into `plugin/sdd/` by the build), and `SECURITY.md` (supported version bumped to 3.2.x). Historical `version_history` rows for v2.1.0 / v3.0.0 preserved as audit trail.
 - **`build-plugin.sh:272` KB counter** (#17) — the `! -name "shared"` exclusion under-reported KB domains by one. `shared/` contains anti-patterns referenced by every agent and is correctly counted as a domain now.
@@ -65,7 +65,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - New concept doc at `docs/concepts/agent-overrides.md` with full pattern reference
   - "Customizing Agents" section added to `docs/getting-started/README.md`
   - Override callout added to root `README.md` Install section
-  - Resolution itself is provided by Claude Code's native plugin loader — AgentSpec adds discovery and documentation, not a parallel resolver
+  - Resolution itself is provided by Claude Code's native plugin loader — ChongTech Agent Data Pipeline adds discovery and documentation, not a parallel resolver
 - **`--judge` flag on `/define`, `/design`, `/build`** — progressive-enhancement integration of Judge V0 into the SDD workflow:
   - `/define FEATURE --judge` → cross-model spec-quality review (default: openai/gpt-4o)
   - `/design FEATURE --judge` → architectural-soundness review (default: openai/gpt-4o)
@@ -100,7 +100,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - `/judge --ledger` shows today's usage
   - Setup guide at `docs/getting-started/judge-setup.md` covering OpenRouter key, cost reference, privacy, troubleshooting
   - No MCP server, no auto-triggering hook, no classifier in V0 — user opts in per invocation
-- **Flag System (Progressive Enhancement Framework)** added to backlog as 🔵 P1 for v3.2 — unified flag vocabulary across all phase commands, preserving AgentSpec's simple surface while enabling opt-in depth
+- **Flag System (Progressive Enhancement Framework)** added to backlog as 🔵 P1 for v3.2 — unified flag vocabulary across all phase commands, preserving ChongTech Agent Data Pipeline's simple surface while enabling opt-in depth
 
 ### Changed
 
@@ -159,7 +159,7 @@ Adding, renaming, or retiring an agent no longer requires editing the router. Ed
 
 ### Added
 
-- **Claude Code Plugin support**: AgentSpec is now distributable as a proper Claude Code plugin
+- **Claude Code Plugin support**: ChongTech Agent Data Pipeline is now distributable as a proper Claude Code plugin
 - Plugin manifest (`plugin/.claude-plugin/plugin.json`) with marketplace metadata
 - `build-plugin.sh` — build script that packages `.claude/` into plugin format with path rewriting
 - `plugin-extras/` — plugin-only skills, hooks, and scripts not in `.claude/`
@@ -265,7 +265,7 @@ Adding, renaming, or retiring an agent no longer requires editing the router. Ed
 
 ### Removed
 
-- Project-specific KB domains (agentspec, projects)
+- Project-specific KB domains (chongtech-agent-data-pipeline, projects)
 - `design/agent-spec-plan-todo-list.md` (migrated to Linear)
 
 ### Fixed
@@ -277,7 +277,7 @@ Adding, renaming, or retiring an agent no longer requires editing the router. Ed
 
 ### Initial Release
 
-- Initial release of AgentSpec
+- Initial release of ChongTech Agent Data Pipeline
 - 5-phase SDD workflow (Brainstorm, Define, Design, Build, Ship)
 - 16 specialized agents
   - 6 workflow agents (brainstorm, define, design, build, ship, iterate)

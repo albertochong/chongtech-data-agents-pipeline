@@ -101,7 +101,7 @@ Glob("**/go.mod")
 Glob("**/pom.xml")
 
 # KB domain alignment
-Glob("${CLAUDE_PLUGIN_ROOT}/kb/*/index.md")
+Glob(".claude/kb/*/index.md")
 ```
 
 Compare detected technologies against available KB domains and note any gaps.
@@ -195,7 +195,7 @@ Detecting project health...
 
 # Project Status Report
 
-**Project:** agentspec
+**Project:** chongtech-data-agents-pipeline
 **Branch:** feat/judge-layer
 **Date:** 2026-04-14
 

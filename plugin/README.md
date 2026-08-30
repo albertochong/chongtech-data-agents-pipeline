@@ -1,4 +1,4 @@
-# AgentSpec Plugin
+# ChongTech Agent Data Pipeline Plugin
 
 **Spec-Driven Development for Data Engineering on Claude Code**
 
@@ -7,8 +7,8 @@
 ## Install
 
 ```bash
-claude plugin marketplace add luanmorenommaciel/agentspec
-claude plugin install agentspec
+claude plugin marketplace add albertochong/chongtech-data-agents-pipeline
+claude plugin install chongtech-agent-data-pipeline
 ```
 
 ## What You Get
@@ -16,21 +16,21 @@ claude plugin install agentspec
 ### 5-Phase SDD Workflow
 
 ```
-/agentspec:brainstorm → /agentspec:define → /agentspec:design → /agentspec:build → /agentspec:ship
+/chongtech-agent-data-pipeline:brainstorm → /chongtech-agent-data-pipeline:define → /chongtech-agent-data-pipeline:design → /chongtech-agent-data-pipeline:build → /chongtech-agent-data-pipeline:ship
 ```
 
 ### Data Engineering Commands
 
 | Command | Purpose |
 |---------|---------|
-| `/agentspec:pipeline` | DAG/pipeline scaffolding |
-| `/agentspec:schema` | Interactive schema design |
-| `/agentspec:data-quality` | Quality rules generation |
-| `/agentspec:sql-review` | SQL optimization review |
-| `/agentspec:lakehouse` | Table format + catalog guidance |
-| `/agentspec:ai-pipeline` | RAG/embedding scaffolding |
-| `/agentspec:data-contract` | Data contract authoring (ODCS) |
-| `/agentspec:migrate` | Legacy ETL migration |
+| `/chongtech-agent-data-pipeline:pipeline` | DAG/pipeline scaffolding |
+| `/chongtech-agent-data-pipeline:schema` | Interactive schema design |
+| `/chongtech-agent-data-pipeline:data-quality` | Quality rules generation |
+| `/chongtech-agent-data-pipeline:sql-review` | SQL optimization review |
+| `/chongtech-agent-data-pipeline:lakehouse` | Table format + catalog guidance |
+| `/chongtech-agent-data-pipeline:ai-pipeline` | RAG/embedding scaffolding |
+| `/chongtech-agent-data-pipeline:data-contract` | Data contract authoring (ODCS) |
+| `/chongtech-agent-data-pipeline:migrate` | Legacy ETL migration |
 
 ### 58 Specialized Agents
 

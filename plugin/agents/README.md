@@ -1,6 +1,6 @@
-# AgentSpec Agents
+# ChongTech Agent Data Pipeline Agents
 
-AgentSpec deploys **58 specialized agents** across **8 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
+ChongTech Agent Data Pipeline deploys **58 specialized agents** across **8 categories**, each built on a **three-tier template system** with mandatory **KB-First knowledge resolution**. Every agent carries a cognitive framework that enforces structured confidence scoring, provenance tracking, and explicit stop conditions -- turning raw LLM capability into disciplined, auditable domain expertise.
 
 `58 agents | 8 categories | 3 tiers (T1/T2/T3) | 24 KB domains | 100% template compliance`
 
@@ -8,7 +8,7 @@ AgentSpec deploys **58 specialized agents** across **8 categories**, each built 
 
 ## How Agents Work (Cognitive Architecture)
 
-AgentSpec agents are not raw LLM prompts. They operate through a three-layer cognitive architecture that separates routing, reasoning, and domain knowledge.
+ChongTech Agent Data Pipeline agents are not raw LLM prompts. They operate through a three-layer cognitive architecture that separates routing, reasoning, and domain knowledge.
 
 ### Layer 1: Claude Code Orchestrator (Router)
 

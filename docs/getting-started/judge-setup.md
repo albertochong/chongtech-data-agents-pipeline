@@ -21,7 +21,7 @@ The Judge is **advisory and opt-in**. You invoke it explicitly with `/judge <fil
 
 1. Go to https://openrouter.ai/keys
 2. Sign in (GitHub OAuth or email)
-3. Create a key — name it `agentspec-judge` so it's easy to spot in the dashboard
+3. Create a key — name it `chongtech-agent-data-pipeline-judge` so it's easy to spot in the dashboard
 4. Add credit — $5 is plenty for weeks of judge calls at default settings
 
 ### 2. Export the key

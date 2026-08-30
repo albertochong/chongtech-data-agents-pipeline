@@ -365,12 +365,12 @@ Share visual explainer pages instantly via Vercel. No account or authentication 
 
 **Usage:**
 ```bash
-bash /Users/luanmorenomaciel/GitHub/agentspec/.claude/skills/visual-explainer/scripts/share.sh <html-file>
+bash ${CLAUDE_PLUGIN_ROOT}/skills/visual-explainer/scripts/share.sh <html-file>
 ```
 
 **Example:**
 ```bash
-bash /Users/luanmorenomaciel/GitHub/agentspec/.claude/skills/visual-explainer/scripts/share.sh ~/.agent/diagrams/my-diagram.html
+bash ${CLAUDE_PLUGIN_ROOT}/skills/visual-explainer/scripts/share.sh ~/.agent/diagrams/my-diagram.html
 
 # Output:
 # ✓ Shared successfully!

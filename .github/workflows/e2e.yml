@@ -46,11 +46,11 @@ jobs:
           CI: "1"
         run: claude plugin marketplace add "$GITHUB_WORKSPACE"
 
-      - name: Install agentspec@agentspec
+      - name: Install chongtech-agent-data-pipeline@chongtech-agent-data-pipeline
         env:
           HOME: ${{ runner.temp }}/e2e-home
           CI: "1"
-        run: claude plugin install agentspec@agentspec
+        run: claude plugin install chongtech-agent-data-pipeline@chongtech-agent-data-pipeline
 
       - name: Assert install landed with the expected shape
         env:
@@ -63,14 +63,14 @@ jobs:
             exit 1
           fi
 
-          IP=$(python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(d['plugins']['agentspec@agentspec'][0]['installPath'])" "$REGISTRY")
+          IP=$(python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(d['plugins']['chongtech-agent-data-pipeline@chongtech-agent-data-pipeline'][0]['installPath'])" "$REGISTRY")
           if [ -z "$IP" ] || [ ! -d "$IP" ]; then
             echo "::error::installPath '$IP' from $REGISTRY does not exist"
             exit 1
           fi
           echo "IP=$IP" >> "$GITHUB_ENV"
 
-          VERSION=$(python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(d['plugins']['agentspec@agentspec'][0]['version'])" "$REGISTRY")
+          VERSION=$(python3 -c "import json,sys; d=json.load(open(sys.argv[1])); print(d['plugins']['chongtech-agent-data-pipeline@chongtech-agent-data-pipeline'][0]['version'])" "$REGISTRY")
           echo "registry installPath: $IP"
           echo "registry version: $VERSION"
 

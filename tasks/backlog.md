@@ -1,4 +1,4 @@
-# AgentSpec Backlog
+# ChongTech Agent Data Pipeline Backlog
 
 > **Last Updated:** 2026-04-17
 > **Current Version:** v3.1.0
@@ -63,7 +63,7 @@
 
 ### 🔵 P1: Flag System (Progressive Enhancement Framework)
 
-**Description:** Unified flag vocabulary across all phase commands — preserves AgentSpec's simple surface while enabling opt-in depth (judges, autonomy, model overrides, parallel composition). Defaults reproduce today's behavior exactly; flags layer on power when requested.
+**Description:** Unified flag vocabulary across all phase commands — preserves ChongTech Agent Data Pipeline's simple surface while enabling opt-in depth (judges, autonomy, model overrides, parallel composition). Defaults reproduce today's behavior exactly; flags layer on power when requested.
 
 **Philosophy:** Same dimmer-switch model as `git commit` → `git commit --amend --signoff -S`. Users never forced into complexity; opt in per run.
 
@@ -175,10 +175,10 @@
 
 ### ⚪ P1: Agentic Architect (Meta-Agent)
 
-**Description:** A T3 agent that uses AgentSpec to evolve AgentSpec — creates new agents, KB domains, commands, and compositions.
+**Description:** A T3 agent that uses ChongTech Agent Data Pipeline to evolve ChongTech Agent Data Pipeline — creates new agents, KB domains, commands, and compositions.
 
 **Tasks:**
-- [ ] Create `agentspec-architect` agent (Opus, T3)
+- [ ] Create `chongtech-agent-data-pipeline-architect` agent (Opus, T3)
 - [ ] Implement "design new agent" capability (reads `_template.md`, generates compliant files)
 - [ ] Implement "create KB domain" capability (reads templates, generates full domain)
 - [ ] Implement "compose command" capability (chains KB → agent → command)
@@ -228,7 +228,7 @@
 
 ### ⚫ P2: Codex & Claude Cross-Platform
 
-**Description:** Extend AgentSpec beyond Claude Code — make it work with Codex, OpenClaw, Cursor via MCP-first distribution.
+**Description:** Extend ChongTech Agent Data Pipeline beyond Claude Code — make it work with Codex, OpenClaw, Cursor via MCP-first distribution.
 
 **Tasks:**
 - [ ] Add `build_codex_plugin()` to build-plugin.sh
@@ -304,7 +304,7 @@
 
 ### ⚪ P3: `CLAUDE.md.template`
 
-**Description:** Template file for user projects that includes routing rules, team conventions, and AgentSpec integration.
+**Description:** Template file for user projects that includes routing rules, team conventions, and ChongTech Agent Data Pipeline integration.
 
 **Tasks:**
 - [ ] Create `CLAUDE.md.template` with standard sections
@@ -341,7 +341,7 @@
 - Visual HTML dashboard for `/status` output
 - `/agent-profile` command (show individual agent capabilities and usage)
 - Export KB domain as standalone package (for sharing specific domains)
-- AgentSpec playground — interactive web demo
+- ChongTech Agent Data Pipeline playground — interactive web demo
 - Video walkthroughs for each command
 - Slack/Discord community
 

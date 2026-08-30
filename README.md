@@ -3,7 +3,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/banner.svg">
-  <img alt="AgentSpec — Spec-Driven Data Engineering" src="assets/banner.svg" width="100%">
+  <img alt="ChongTech Agent Data Pipeline — Spec-Driven Data Engineering" src="assets/banner.svg" width="100%">
 </picture>
 
 <br/><br/>
@@ -23,11 +23,11 @@
 
 <br/>
 
-## Why AgentSpec?
+## Why ChongTech Agent Data Pipeline?
 
 Every time you ask an AI to build a data pipeline, it starts from scratch — no memory of partition strategies, no awareness of SCD patterns, no understanding of your data contracts. You get hallucinated SQL, wrong incremental strategies, and pipelines that pass in dev but break in production.
 
-AgentSpec solves this with **Spec-Driven Data Engineering**: a 5-phase workflow where every phase has access to 24 knowledge base domains, every agent knows its boundaries, and every decision is confidence-scored against real documentation — not guessed.
+ChongTech Agent Data Pipeline solves this with **Spec-Driven Data Engineering**: a 5-phase workflow where every phase has access to 24 knowledge base domains, every agent knows its boundaries, and every decision is confidence-scored against real documentation — not guessed.
 
 <br/>
 
@@ -35,14 +35,14 @@ AgentSpec solves this with **Spec-Driven Data Engineering**: a 5-phase workflow 
 
 ```bash
 # Install the plugin (one-time)
-claude plugin marketplace add luanmorenommaciel/agentspec
-claude plugin install agentspec
+claude plugin marketplace add albertochong/chongtech-data-agents-pipeline
+claude plugin install chongtech-agent-data-pipeline
 ```
 
 Done. Every Claude Code session now has 58 agents, 31 commands, and 24 KB domains. Updates are one command:
 
 ```bash
-claude plugin update agentspec
+claude plugin update chongtech-agent-data-pipeline
 ```
 
 > **Override any agent locally** — drop a file in `.claude/agents/<category>/<agent-name>.md` and it takes precedence over the plugin version. See [Agent Overrides](docs/concepts/agent-overrides.md).
@@ -52,12 +52,12 @@ claude plugin update agentspec
 
 ```bash
 # Local testing (no install needed)
-git clone https://github.com/luanmorenommaciel/agentspec.git
-claude --plugin-dir ./agentspec/plugin
+git clone https://github.com/albertochong/chongtech-data-agents-pipeline.git
+claude --plugin-dir ./chongtech-data-agents-pipeline/plugin
 
 # Legacy copy (pre-plugin, still works)
-git clone https://github.com/luanmorenommaciel/agentspec.git
-cp -r agentspec/.claude your-project/.claude
+git clone https://github.com/albertochong/chongtech-data-agents-pipeline.git
+cp -r chongtech-data-agents-pipeline/.claude your-project/.claude
 ```
 
 </details>
@@ -69,21 +69,21 @@ cp -r agentspec/.claude your-project/.claude
 ### Build a data pipeline in 5 phases
 
 ```bash
-/agentspec:brainstorm "Daily orders pipeline from Postgres to Snowflake star schema"
-/agentspec:define ORDERS_PIPELINE
-/agentspec:design ORDERS_PIPELINE
-/agentspec:build ORDERS_PIPELINE
-/agentspec:ship ORDERS_PIPELINE
+/chongtech-agent-data-pipeline:brainstorm "Daily orders pipeline from Postgres to Snowflake star schema"
+/chongtech-agent-data-pipeline:define ORDERS_PIPELINE
+/chongtech-agent-data-pipeline:design ORDERS_PIPELINE
+/chongtech-agent-data-pipeline:build ORDERS_PIPELINE
+/chongtech-agent-data-pipeline:ship ORDERS_PIPELINE
 ```
 
 ### Or jump straight to what you need
 
 ```bash
-/agentspec:schema "Star schema for e-commerce analytics"
-/agentspec:pipeline "Daily orders ETL with Airflow"
-/agentspec:data-quality models/staging/stg_orders.sql
-/agentspec:sql-review models/marts/
-/agentspec:data-contract "Contract between orders team and analytics"
+/chongtech-agent-data-pipeline:schema "Star schema for e-commerce analytics"
+/chongtech-agent-data-pipeline:pipeline "Daily orders ETL with Airflow"
+/chongtech-agent-data-pipeline:data-quality models/staging/stg_orders.sql
+/chongtech-agent-data-pipeline:sql-review models/marts/
+/chongtech-agent-data-pipeline:data-contract "Contract between orders team and analytics"
 ```
 
 <br/>
@@ -94,38 +94,38 @@ cp -r agentspec/.claude your-project/.claude
 
 | I want to... | Command | Agent |
 |:--|:--|:--|
-| Design a data pipeline / DAG | `/agentspec:pipeline` | `pipeline-architect` |
-| Design a star schema / data model | `/agentspec:schema` | `schema-designer` |
-| Add data quality checks | `/agentspec:data-quality` | `data-quality-analyst` |
-| Optimize slow SQL | `/agentspec:sql-review` | `sql-optimizer` |
-| Choose Iceberg vs Delta Lake | `/agentspec:lakehouse` | `lakehouse-architect` |
-| Build a RAG / embedding pipeline | `/agentspec:ai-pipeline` | `ai-data-engineer` |
-| Create a data contract | `/agentspec:data-contract` | `data-contracts-engineer` |
-| Migrate legacy SSIS / Informatica | `/agentspec:migrate` | `dbt-specialist` + `spark-engineer` |
+| Design a data pipeline / DAG | `/chongtech-agent-data-pipeline:pipeline` | `pipeline-architect` |
+| Design a star schema / data model | `/chongtech-agent-data-pipeline:schema` | `schema-designer` |
+| Add data quality checks | `/chongtech-agent-data-pipeline:data-quality` | `data-quality-analyst` |
+| Optimize slow SQL | `/chongtech-agent-data-pipeline:sql-review` | `sql-optimizer` |
+| Choose Iceberg vs Delta Lake | `/chongtech-agent-data-pipeline:lakehouse` | `lakehouse-architect` |
+| Build a RAG / embedding pipeline | `/chongtech-agent-data-pipeline:ai-pipeline` | `ai-data-engineer` |
+| Create a data contract | `/chongtech-agent-data-pipeline:data-contract` | `data-contracts-engineer` |
+| Migrate legacy SSIS / Informatica | `/chongtech-agent-data-pipeline:migrate` | `dbt-specialist` + `spark-engineer` |
 
 ### SDD Workflow
 
 | I want to... | Command | What Happens |
 |:--|:--|:--|
-| Explore an idea | `/agentspec:brainstorm` | Compare approaches, discovery questions, YAGNI filter |
-| Capture requirements | `/agentspec:define` | Structured requirements with clarity score (min 12/15) |
-| Design architecture | `/agentspec:design` | File manifest + pipeline architecture + ADRs |
-| Implement the feature | `/agentspec:build` | Auto-delegates to specialist agents per file type |
-| Archive completed work | `/agentspec:ship` | Lessons learned + KB updates |
-| Update after changes | `/agentspec:iterate` | Cascade-aware updates across all phase documents |
+| Explore an idea | `/chongtech-agent-data-pipeline:brainstorm` | Compare approaches, discovery questions, YAGNI filter |
+| Capture requirements | `/chongtech-agent-data-pipeline:define` | Structured requirements with clarity score (min 12/15) |
+| Design architecture | `/chongtech-agent-data-pipeline:design` | File manifest + pipeline architecture + ADRs |
+| Implement the feature | `/chongtech-agent-data-pipeline:build` | Auto-delegates to specialist agents per file type |
+| Archive completed work | `/chongtech-agent-data-pipeline:ship` | Lessons learned + KB updates |
+| Update after changes | `/chongtech-agent-data-pipeline:iterate` | Cascade-aware updates across all phase documents |
 
 ### Visual & Utilities
 
 | I want to... | Command |
 |:--|:--|
-| Generate architecture diagrams | `/agentspec:generate-web-diagram` |
-| Create presentation slides | `/agentspec:generate-slides` |
-| Visual implementation plan | `/agentspec:generate-visual-plan` |
-| Review code changes visually | `/agentspec:diff-review` |
-| Review code | `/agentspec:review` |
-| Analyze meeting transcripts | `/agentspec:meeting` |
-| Create a new KB domain | `/agentspec:create-kb` |
-| Share HTML page via Vercel | `/agentspec:share` |
+| Generate architecture diagrams | `/chongtech-agent-data-pipeline:generate-web-diagram` |
+| Create presentation slides | `/chongtech-agent-data-pipeline:generate-slides` |
+| Visual implementation plan | `/chongtech-agent-data-pipeline:generate-visual-plan` |
+| Review code changes visually | `/chongtech-agent-data-pipeline:diff-review` |
+| Review code | `/chongtech-agent-data-pipeline:review` |
+| Analyze meeting transcripts | `/chongtech-agent-data-pipeline:meeting` |
+| Create a new KB domain | `/chongtech-agent-data-pipeline:create-kb` |
+| Share HTML page via Vercel | `/chongtech-agent-data-pipeline:share` |
 
 <br/>
 
@@ -152,9 +152,9 @@ cp -r agentspec/.claude your-project/.claude
                     Cascade-aware updates
 ```
 
-**Agent matching:** Your DESIGN doc specifies dbt staging models, a PySpark job, and an Airflow DAG — AgentSpec automatically delegates to `dbt-specialist`, `spark-engineer`, and `pipeline-architect`.
+**Agent matching:** Your DESIGN doc specifies dbt staging models, a PySpark job, and an Airflow DAG — ChongTech Agent Data Pipeline automatically delegates to `dbt-specialist`, `spark-engineer`, and `pipeline-architect`.
 
-**Requirements changed?** `/agentspec:iterate` updates any phase document with automatic cascade detection across all downstream docs.
+**Requirements changed?** `/chongtech-agent-data-pipeline:iterate` updates any phase document with automatic cascade detection across all downstream docs.
 
 <br/>
 
@@ -199,18 +199,18 @@ Each domain contains an `index.md`, `quick-reference.md`, `concepts/` (3-6 files
 
 | Phase | Command | Output | Gate |
 |:--|:--|:--|:--|
-| **0. Brainstorm** | `/agentspec:brainstorm` | `BRAINSTORM_{FEATURE}.md` | 3+ questions, 2+ approaches |
-| **1. Define** | `/agentspec:define` | `DEFINE_{FEATURE}.md` | Clarity Score >= 12/15 |
-| **2. Design** | `/agentspec:design` | `DESIGN_{FEATURE}.md` | Complete manifest + schema plan |
-| **3. Build** | `/agentspec:build` | Code + `BUILD_REPORT.md` | All tests pass |
-| **4. Ship** | `/agentspec:ship` | `SHIPPED_{DATE}.md` | Acceptance verified |
+| **0. Brainstorm** | `/chongtech-agent-data-pipeline:brainstorm` | `BRAINSTORM_{FEATURE}.md` | 3+ questions, 2+ approaches |
+| **1. Define** | `/chongtech-agent-data-pipeline:define` | `DEFINE_{FEATURE}.md` | Clarity Score >= 12/15 |
+| **2. Design** | `/chongtech-agent-data-pipeline:design` | `DESIGN_{FEATURE}.md` | Complete manifest + schema plan |
+| **3. Build** | `/chongtech-agent-data-pipeline:build` | Code + `BUILD_REPORT.md` | All tests pass |
+| **4. Ship** | `/chongtech-agent-data-pipeline:ship` | `SHIPPED_{DATE}.md` | Acceptance verified |
 
 <br/>
 
 ## Project Structure
 
 ```
-agentspec/
+chongtech-data-agents-pipeline/
 ├── .claude/                 # Source of truth (development)
 │   ├── agents/              # 58 agents across 8 categories
 │   ├── commands/            # 31 slash commands

@@ -17,19 +17,19 @@ You are the Spec-Driven Development workflow assistant. Help users navigate the 
 
 | Phase | Command | Output | Purpose |
 |-------|---------|--------|---------|
-| 0 | `/agentspec:brainstorm` | `BRAINSTORM_{FEATURE}.md` | Explore ideas, compare approaches |
-| 1 | `/agentspec:define` | `DEFINE_{FEATURE}.md` | Capture requirements (clarity >= 12/15) |
-| 2 | `/agentspec:design` | `DESIGN_{FEATURE}.md` | Architecture + file manifest |
-| 3 | `/agentspec:build` | Code + `BUILD_REPORT_{FEATURE}.md` | Implementation with tests |
-| 4 | `/agentspec:ship` | `SHIPPED_{DATE}.md` | Archive + lessons learned |
+| 0 | `/chongtech-agent-data-pipeline:brainstorm` | `BRAINSTORM_{FEATURE}.md` | Explore ideas, compare approaches |
+| 1 | `/chongtech-agent-data-pipeline:define` | `DEFINE_{FEATURE}.md` | Capture requirements (clarity >= 12/15) |
+| 2 | `/chongtech-agent-data-pipeline:design` | `DESIGN_{FEATURE}.md` | Architecture + file manifest |
+| 3 | `/chongtech-agent-data-pipeline:build` | Code + `BUILD_REPORT_{FEATURE}.md` | Implementation with tests |
+| 4 | `/chongtech-agent-data-pipeline:ship` | `SHIPPED_{DATE}.md` | Archive + lessons learned |
 
 ## When to Guide
 
-- User says "I want to build..." → Suggest starting with `/agentspec:brainstorm` or `/agentspec:define`
-- User has requirements → Suggest `/agentspec:define` to structure them
-- User has a DEFINE doc → Suggest `/agentspec:design` to create architecture
-- User has a DESIGN doc → Suggest `/agentspec:build` to implement
-- User completed building → Suggest `/agentspec:ship` to archive
+- User says "I want to build..." → Suggest starting with `/chongtech-agent-data-pipeline:brainstorm` or `/chongtech-agent-data-pipeline:define`
+- User has requirements → Suggest `/chongtech-agent-data-pipeline:define` to structure them
+- User has a DEFINE doc → Suggest `/chongtech-agent-data-pipeline:design` to create architecture
+- User has a DESIGN doc → Suggest `/chongtech-agent-data-pipeline:build` to implement
+- User completed building → Suggest `/chongtech-agent-data-pipeline:ship` to archive
 
 ## Workflow Rules
 
@@ -56,7 +56,7 @@ The layering itself (agents execute, skills teach how, commands are entrypoints,
 
 ## Cross-Phase Updates
 
-Use `/agentspec:iterate` to update any phase document when requirements change. It detects cascading impacts across phases.
+Use `/chongtech-agent-data-pipeline:iterate` to update any phase document when requirements change. It detects cascading impacts across phases.
 
 ## Templates
 

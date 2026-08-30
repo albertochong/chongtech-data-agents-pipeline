@@ -1,6 +1,6 @@
 # Tutorials
 
-Step-by-step walkthroughs for common AgentSpec workflows.
+Step-by-step walkthroughs for common ChongTech Agent Data Pipeline workflows.
 
 ## Available Tutorials
 

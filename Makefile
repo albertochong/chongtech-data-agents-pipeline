@@ -10,13 +10,17 @@
 #   make test          # pytest suite only
 #   make check         # drift check (tests + --check on generators)
 #   make lint          # shellcheck + markdown warnings
+#
+# No separate setup step after cloning: `build`, `test`, and `check` all
+# depend on `install-hooks`, so the very first one you run also silently
+# activates the versioned pre-push validation hook (scripts/git-hooks/).
 # ============================================================================
 
 # Use bash so we get [[ ]], set -u, etc. — not POSIX sh.
 SHELL := /usr/bin/env bash
 
 .DEFAULT_GOAL := help
-.PHONY: help build test check lint clean generate plugin install-deps spec-lint spec-judge
+.PHONY: help build test check lint clean generate plugin install-deps spec-lint spec-judge install-hooks
 
 # ----------------------------------------------------------------------------
 # Help
@@ -33,13 +37,13 @@ help: ## Show this help
 # Core targets
 # ----------------------------------------------------------------------------
 
-build: ## Full plugin build (tests + regenerate agent-router + package)
+build: install-hooks ## Full plugin build (tests + regenerate agent-router + package)
 	@./build-plugin.sh
 
-test: ## Run pytest suite
+test: install-hooks ## Run pytest suite
 	@python3 -m pytest tests/ -v
 
-check: ## Drift check — tests + generators in --check mode (fails on drift)
+check: install-hooks ## Drift check — tests + generators in --check mode (fails on drift)
 	@python3 -m pytest tests/ -q
 	@python3 scripts/generate-agent-router.py --check
 
@@ -92,4 +96,11 @@ install-deps: ## Install optional dev dependencies (pytest, shellcheck)
 		echo ""; \
 		echo "shellcheck not installed. On macOS:  brew install shellcheck"; \
 		echo "                        On Linux:    apt-get install shellcheck"; \
+	fi
+
+install-hooks: ## Activate the versioned pre-push hook (auto-run by build/test/check; safe to re-run)
+	@if [ "$$(git config --get core.hooksPath 2>/dev/null)" != "scripts/git-hooks" ]; then \
+		git config core.hooksPath scripts/git-hooks; \
+		chmod +x scripts/git-hooks/*; \
+		echo "[hooks] Activated: 'git push' now runs a build + test check first (bypass with --no-verify)."; \
 	fi

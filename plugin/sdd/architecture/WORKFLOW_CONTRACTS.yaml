@@ -1,10 +1,10 @@
-# AgentSpec - Workflow Contracts
+# ChongTech Agent Data Pipeline - Workflow Contracts
 # 5-Phase Development Workflow with Agent Matching and Delegation
 # Version: 3.5.0
 # Date: 2026-07-15
 
 version: "3.5.0"
-name: "AgentSpec"
+name: "ChongTech Agent Data Pipeline"
 description: "5-phase spec-driven development workflow with agent orchestration for software and data engineering"
 
 # =============================================================================
@@ -80,7 +80,7 @@ workflow:
 # =============================================================================
 # AGENT RESOLUTION (Local-First Precedence)
 # =============================================================================
-# When AgentSpec is installed as a Claude Code plugin, users may have agents
+# When ChongTech Agent Data Pipeline is installed as a Claude Code plugin, users may have agents
 # in their project's ${CLAUDE_PLUGIN_ROOT}/agents/ directory that share a name with a plugin
 # agent. This contract documents the resolution order so phase commands can
 # rely on stable behavior across hosts.
@@ -88,13 +88,13 @@ workflow:
 agent_resolution:
   order:
     - "local"   # ${CLAUDE_PLUGIN_ROOT}/agents/<category>/<name>.md in the user's project
-    - "plugin"  # ${CLAUDE_PLUGIN_ROOT}/agents/<category>/<name>.md (AgentSpec)
+    - "plugin"  # ${CLAUDE_PLUGIN_ROOT}/agents/<category>/<name>.md (ChongTech Agent Data Pipeline)
 
   behavior: |
     Local agents override plugin agents by name. When an agent name appears
-    in both the user's project and the AgentSpec plugin, the local version
+    in both the user's project and the ChongTech Agent Data Pipeline plugin, the local version
     is invoked. Enforcement is provided by Claude Code's native plugin
-    loader; AgentSpec does not implement a parallel resolver.
+    loader; ChongTech Agent Data Pipeline does not implement a parallel resolver.
 
   scaffolding:
     description: |
@@ -129,11 +129,11 @@ agent_resolution:
 # (validate an artifact against a contract -> verdict); contracts are policy
 # (what is checked + severity); consumers below choose where they bind. The
 # engine and verdict semantics are stable; contract CONTENT is owned upstream
-# (canonical schemas pending). Operator documentation: ${CLAUDE_PLUGIN_ROOT}/tools/spec-linter/USAGE.md
+# (canonical schemas pending). Operator documentation: tools/spec-linter/USAGE.md
 
 contract_enforcement:
   component: "spec-linter"
-  usage_doc: "${CLAUDE_PLUGIN_ROOT}/tools/spec-linter/USAGE.md"
+  usage_doc: "tools/spec-linter/USAGE.md"
   entry_point: "spec_linter.engine.lint(artifact, contract)"
 
   verdict_semantics:
@@ -229,11 +229,11 @@ contract_enforcement:
 # Advisory by default (WARN ceiling); FAIL is reachable only at the high-assurance
 # tier, under a strict three-way cross-model consensus, and blocks only where a
 # consumer opts in. The engine mirrors the Linter's shape and reuses its Verdict/
-# Finding value objects. Operator documentation: ${CLAUDE_PLUGIN_ROOT}/tools/spec-judge/USAGE.md
+# Finding value objects. Operator documentation: tools/spec-judge/USAGE.md
 
 behavioral_enforcement:
   component: "spec-judge"
-  usage_doc: "${CLAUDE_PLUGIN_ROOT}/tools/spec-judge/USAGE.md"
+  usage_doc: "tools/spec-judge/USAGE.md"
   entry_point: "spec_judge.engine.judge(artifact, contract, panel=None)"
 
   runs_after: "contract_enforcement (the Linter) returns PASS — never on a structural FAIL"
@@ -789,7 +789,7 @@ version_history:
       - "Phase blocks now carry a skill: reference and keep only contract-grade facts (inputs, outputs, status values, quality gates, thresholds); methodology sub-blocks (process, questioning, extraction_elements, inline_decisions, cascade_rules, anti_patterns, etc.) moved into the skills"
       - "Removed duplicated agent model/tools from the workflow overview and phase blocks — agent frontmatter is authoritative (mirrored in routing.json); the duplicated copies had drifted from the real values"
       - "Grounded in the component model (kb/shared/component-model.md): agents execute, skills teach how, commands are entrypoints, KBs are source-of-truth"
-      - "Contract-gate procedure relocated from the phase agents into the phase skills (sdd-define, sdd-design, sdd-iterate) under the same component-model split; the skills name the artifact and phase to validate and point at the linter's USAGE, while the exit-code contract and verdict semantics stay owned by contract_enforcement here and by ${CLAUDE_PLUGIN_ROOT}/tools/spec-linter/USAGE.md — consumers do not restate them"
+      - "Contract-gate procedure relocated from the phase agents into the phase skills (sdd-define, sdd-design, sdd-iterate) under the same component-model split; the skills name the artifact and phase to validate and point at the linter's USAGE, while the exit-code contract and verdict semantics stay owned by contract_enforcement here and by tools/spec-linter/USAGE.md — consumers do not restate them"
       - "Dropped the Brainstorm/Build/Ship gate stubs that narrated a missing required_sections key: the phase blocks here already own that fact and the linter reports the case itself (exit 2 — record a visible skip and proceed)"
 
   - version: "3.3.1"
@@ -840,7 +840,7 @@ version_history:
   - version: "1.0.0"
     date: "2026-02-17"
     changes:
-      - "Public release as AgentSpec v1.0.0"
+      - "Public release as ChongTech Agent Data Pipeline v1.0.0"
       - "Initial public release with 5-phase workflow and agent orchestration"
       - "16 core agents across 4 categories"
       - "Extensible KB domain system"

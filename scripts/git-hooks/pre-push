@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# scripts/git-hooks/pre-push — validation gate run before `git push`.
+#
+# Versioned inside the repo (not .git/hooks/, which git never syncs on
+# clone). Activated once per clone via `make install-hooks`, which points
+# git at this directory with `git config core.hooksPath scripts/git-hooks`.
+#
+# What it checks, in order:
+#   1. Rebuilds plugin/ from .claude/ and fails the push if that produced
+#      an uncommitted diff (a stale plugin/ is exactly what quality-checks.yml
+#      and plugin-validate.yml would fail the PR on in CI — this catches it
+#      before it ever leaves your machine).
+#   2. Runs the pytest suite (tests/) — skipped with a warning, never a
+#      block, if pytest isn't installed locally (mirrors the "don't block on
+#      a missing optional dependency" rule build-plugin.sh already follows).
+#
+# Bypass for a deliberate exception: `git push --no-verify`.
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "${REPO_ROOT}"
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo "pre-push: rebuilding plugin/ from .claude/ ..."
+if ! bash build-plugin.sh > /tmp/pre-push-build.log 2>&1; then
+    printf "${RED}[BLOCKED]${NC} build-plugin.sh failed — see output below.\n"
+    cat /tmp/pre-push-build.log
+    exit 1
+fi
+
+if ! git diff --quiet -- plugin/ .claude-plugin/; then
+    printf "${RED}[BLOCKED]${NC} plugin/ (or .claude-plugin/) is out of date.\n"
+    echo "Rebuilding just changed tracked files — review and commit them:"
+    git --no-pager diff --stat -- plugin/ .claude-plugin/
+    echo
+    echo "Run: git add plugin/ .claude-plugin/ && git commit"
+    exit 1
+fi
+printf "${GREEN}[OK]${NC} plugin/ matches .claude/\n"
+
+if command -v pytest >/dev/null 2>&1 || python3 -m pytest --version >/dev/null 2>&1; then
+    echo "pre-push: running pytest tests/ ..."
+    if ! python3 -m pytest tests/ -q; then
+        printf "${RED}[BLOCKED]${NC} tests/ failed.\n"
+        exit 1
+    fi
+    printf "${GREEN}[OK]${NC} tests/ passed\n"
+else
+    printf "${YELLOW}[WARN]${NC} pytest not installed — skipping tests/ (install with: python3 -m pip install pytest)\n"
+fi
+
+exit 0

@@ -15,14 +15,14 @@ You have access to 23 specialized knowledge base domains and 15+ data engineerin
 
 | User Task | Command | Agent |
 |-----------|---------|-------|
-| Design a data pipeline / DAG | `/agentspec:pipeline` | pipeline-architect |
-| Design a schema / star schema / data model | `/agentspec:schema` | schema-designer |
-| Add data quality checks | `/agentspec:data-quality` | data-quality-analyst |
-| Review SQL performance | `/agentspec:sql-review` | sql-optimizer |
-| Choose table format (Iceberg/Delta) | `/agentspec:lakehouse` | lakehouse-architect |
-| Build RAG / embedding pipeline | `/agentspec:ai-pipeline` | ai-data-engineer |
-| Create a data contract | `/agentspec:data-contract` | data-contracts-engineer |
-| Migrate legacy ETL | `/agentspec:migrate` | dbt-specialist + spark-engineer |
+| Design a data pipeline / DAG | `/chongtech-agent-data-pipeline:pipeline` | pipeline-architect |
+| Design a schema / star schema / data model | `/chongtech-agent-data-pipeline:schema` | schema-designer |
+| Add data quality checks | `/chongtech-agent-data-pipeline:data-quality` | data-quality-analyst |
+| Review SQL performance | `/chongtech-agent-data-pipeline:sql-review` | sql-optimizer |
+| Choose table format (Iceberg/Delta) | `/chongtech-agent-data-pipeline:lakehouse` | lakehouse-architect |
+| Build RAG / embedding pipeline | `/chongtech-agent-data-pipeline:ai-pipeline` | ai-data-engineer |
+| Create a data contract | `/chongtech-agent-data-pipeline:data-contract` | data-contracts-engineer |
+| Migrate legacy ETL | `/chongtech-agent-data-pipeline:migrate` | dbt-specialist + spark-engineer |
 
 ## Knowledge Domains Available
 
@@ -43,11 +43,11 @@ You have access to 23 specialized knowledge base domains and 15+ data engineerin
 
 ## When to Suggest Commands
 
-- User mentions "dbt model" or "staging model" → `/agentspec:schema` or delegate to dbt-specialist
-- User mentions "pipeline" or "DAG" or "orchestration" → `/agentspec:pipeline`
-- User mentions "data quality" or "expectations" or "tests" → `/agentspec:data-quality`
-- User mentions "slow query" or "optimize SQL" → `/agentspec:sql-review`
-- User mentions "Iceberg" or "Delta Lake" or "table format" → `/agentspec:lakehouse`
-- User mentions "RAG" or "embeddings" or "vector" → `/agentspec:ai-pipeline`
-- User mentions "contract" or "SLA" or "schema governance" → `/agentspec:data-contract`
-- User mentions "migrate" or "legacy" or "SSIS" or "Informatica" → `/agentspec:migrate`
+- User mentions "dbt model" or "staging model" → `/chongtech-agent-data-pipeline:schema` or delegate to dbt-specialist
+- User mentions "pipeline" or "DAG" or "orchestration" → `/chongtech-agent-data-pipeline:pipeline`
+- User mentions "data quality" or "expectations" or "tests" → `/chongtech-agent-data-pipeline:data-quality`
+- User mentions "slow query" or "optimize SQL" → `/chongtech-agent-data-pipeline:sql-review`
+- User mentions "Iceberg" or "Delta Lake" or "table format" → `/chongtech-agent-data-pipeline:lakehouse`
+- User mentions "RAG" or "embeddings" or "vector" → `/chongtech-agent-data-pipeline:ai-pipeline`
+- User mentions "contract" or "SLA" or "schema governance" → `/chongtech-agent-data-pipeline:data-contract`
+- User mentions "migrate" or "legacy" or "SSIS" or "Informatica" → `/chongtech-agent-data-pipeline:migrate`

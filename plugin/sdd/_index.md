@@ -1,4 +1,4 @@
-# AgentSpec
+# ChongTech Agent Data Pipeline
 
 > 5-phase development workflow with Agent Matching and Delegation, specialized for Data Engineering.
 > *"Brainstorm -> Define -> Design -> Build -> Ship"*
@@ -7,9 +7,9 @@
 
 ## Overview
 
-AgentSpec provides Agent Matching (Design phase) and Agent Delegation (Build phase):
+ChongTech Agent Data Pipeline provides Agent Matching (Design phase) and Agent Delegation (Build phase):
 
-| Traditional Approach | AgentSpec |
+| Traditional Approach | ChongTech Agent Data Pipeline |
 |---------------|--------------|
 | 8 phases | **5 phases** (Brainstorm optional) |
 | 3 development modes | **1 unified stream** |
@@ -296,4 +296,4 @@ Per-agent model tiers live in each agent's frontmatter (authoritative), mirrored
 |---------|------|---------|
 | 2.1.0 | 2026-03-26 | Multi-cloud coverage: 58 agents, 8 categories, 23 KB domains |
 | 2.0.0 | 2026-03-26 | Data engineering pivot: 11 KB domains, 11 DE agents, 8 DE commands |
-| 1.0.0 | 2026-02-17 | Public release as AgentSpec v1.0.0 |
+| 1.0.0 | 2026-02-17 | Public release as ChongTech Agent Data Pipeline v1.0.0 |

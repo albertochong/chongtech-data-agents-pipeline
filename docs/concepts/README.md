@@ -4,7 +4,7 @@ Understanding the mental model behind Spec-Driven Development for Data Engineeri
 
 ## The Component Model
 
-AgentSpec separates its building blocks by responsibility: **agents** execute (identity, tool scope, escalation — thin shells), **skills** teach how (methodology and specialized knowledge), **commands** are entrypoints (argument surface, mode selection, sequencing), and **KBs** are source-of-truth deep dives. New logic goes to the layer that owns it. The canonical definition lives in the shared KB (`kb/shared/component-model.md`); the SDD workflow components — thin phase agents plus `sdd-*` skills plus thin phase commands — are the reference implementation.
+ChongTech Agent Data Pipeline separates its building blocks by responsibility: **agents** execute (identity, tool scope, escalation — thin shells), **skills** teach how (methodology and specialized knowledge), **commands** are entrypoints (argument surface, mode selection, sequencing), and **KBs** are source-of-truth deep dives. New logic goes to the layer that owns it. The canonical definition lives in the shared KB (`kb/shared/component-model.md`); the SDD workflow components — thin phase agents plus `sdd-*` skills plus thin phase commands — are the reference implementation.
 
 ## The Problem
 
@@ -18,7 +18,7 @@ Data engineering with AI assistants without structure leads to:
 
 ## The SDD Mental Model
 
-AgentSpec solves this with a **5-phase pipeline** where each phase produces a traceable artifact:
+ChongTech Agent Data Pipeline solves this with a **5-phase pipeline** where each phase produces a traceable artifact:
 
 ```text
   Idea                                                    Shipped Pipeline
