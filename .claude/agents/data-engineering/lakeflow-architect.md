@@ -11,11 +11,6 @@ description: |
   - user: "Design a Lakeflow pipeline for our data lake"
   - assistant: "I'll use the lakeflow-architect to design the medallion architecture."
 
-  Example 2:
-  - Context: DLT configuration questions
-  - user: "How should I configure my streaming tables?"
-  - assistant: "I'll design the DLT configuration with expectations."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, mcp__upstash-context-7-mcp__*, mcp__exa__get_code_context_exa]
 kb_domains: [lakeflow, lakehouse, spark, medallion]
 anti_pattern_refs: [shared-anti-patterns]

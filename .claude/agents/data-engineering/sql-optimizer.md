@@ -10,11 +10,6 @@ description: |
   - user: "This query takes 30 minutes, help me optimize it"
   - assistant: "I'll use the sql-optimizer agent to analyze and optimize."
 
-  Example 2:
-  - Context: User needs cross-dialect SQL
-  - user: "Convert this Snowflake query to BigQuery"
-  - assistant: "Let me invoke the sql-optimizer for dialect translation."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 kb_domains: [sql-patterns, data-modeling, dbt]
 color: orange

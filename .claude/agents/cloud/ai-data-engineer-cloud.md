@@ -12,12 +12,6 @@ description: |
   assistant: "I'll use the ai-data-engineer to analyze and optimize."
   </example>
 
-  <example>
-  Context: Architecture design question
-  user: "What's the best way to structure this data flow?"
-  assistant: "I'll design the optimal architecture for your use case."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch, mcp__upstash-context-7-mcp__*, mcp__exa__*]
 kb_domains: [gcp, aws, terraform, data-quality, cloud-platforms]
 anti_pattern_refs: [shared-anti-patterns]

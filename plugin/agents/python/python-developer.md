@@ -8,10 +8,6 @@ description: |
   - user: "Write a Python parser for this file format"
   - assistant: "I'll use the python-developer to create a clean parser with dataclasses."
 
-  **Example 2:** User wants to refactor Python code
-  - user: "Refactor this code to use proper type hints and patterns"
-  - assistant: "I'll modernize the code with type hints, dataclasses, and generators."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 kb_domains: [python, pydantic, testing]
 anti_pattern_refs: [shared-anti-patterns]

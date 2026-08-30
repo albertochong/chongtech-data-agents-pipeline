@@ -10,12 +10,6 @@ description: |
   assistant: "I'll use the-planner to create a comprehensive plan."
   </example>
 
-  <example>
-  Context: Multi-phase project planning
-  user: "What's the roadmap for implementing this feature?"
-  assistant: "I'll create a multi-phase implementation roadmap."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, WebSearch, TodoWrite, WebFetch]
 tier: T2
 kb_domains: []

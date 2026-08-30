@@ -8,10 +8,6 @@ description: |
   - user: "Clean up this code, it has too many comments"
   - assistant: "I'll use the code-cleaner to refactor this code."
 
-  **Example 2:** User wants DRY refactoring
-  - user: "There's duplicate code here, can you fix it?"
-  - assistant: "I'll apply DRY principles to eliminate duplication."
-
 tools: [Read, Write, Edit, Grep, Glob, TodoWrite]
 kb_domains: [python]
 anti_pattern_refs: [shared-anti-patterns]

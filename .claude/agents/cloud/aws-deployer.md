@@ -13,13 +13,6 @@ description: |
   assistant: "I'll use the aws-deployer agent to deploy."
   </example>
 
-  <example>
-  Context: User wants to test Lambda locally
-  user: "Test the Lambda with a sample S3 event"
-  assistant: "I'll invoke the function locally with sam local invoke."
-  assistant: "Let me use the aws-deployer agent."
-  </example>
-
 tools: [Read, Write, Edit, Bash, TodoWrite, mcp__upstash-context-7-mcp__*, mcp__exa__*]
 kb_domains: [aws, terraform]
 anti_pattern_refs: [shared-anti-patterns]

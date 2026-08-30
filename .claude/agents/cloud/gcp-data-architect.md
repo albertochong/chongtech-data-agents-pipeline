@@ -12,12 +12,6 @@ description: |
   assistant: "I'll use the gcp-data-architect to design the Pub/Sub → Dataflow → BigQuery pipeline."
   </example>
 
-  <example>
-  Context: User needs BigQuery optimization
-  user: "Optimize our BigQuery costs and queries"
-  assistant: "I'll analyze partitioning, clustering, and slot usage for cost optimization."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch]
 kb_domains: [gcp, terraform, cloud-platforms, data-quality]
 anti_pattern_refs: [shared-anti-patterns]

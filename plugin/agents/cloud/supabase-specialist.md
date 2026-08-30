@@ -13,12 +13,6 @@ description: |
   assistant: "I'll use the supabase-specialist agent to configure pgvector with HNSW indexes and match functions."
   </example>
 
-  <example>
-  Context: User needs RLS policies
-  user: "Implement row-level security on the conversations table"
-  assistant: "I'll use the supabase-specialist agent to design RLS policies for the conversations table."
-  </example>
-
 tools: [Read, Write, Edit, MultiEdit, Grep, Glob, Bash, TodoWrite, WebSearch, WebFetch, mcp__upstash-context-7-mcp__*, mcp__exa__*, mcp__claude_ai_Supabase__*]
 kb_domains: [supabase, ai-data-engineering, data-modeling]
 anti_pattern_refs: [shared-anti-patterns]

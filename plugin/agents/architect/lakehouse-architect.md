@@ -10,12 +10,6 @@ description: |
   assistant: "I'll use the lakehouse-architect agent to design the setup."
   </example>
 
-  <example>
-  Context: User comparing table formats
-  user: "Should we use Delta Lake or Iceberg?"
-  assistant: "Let me invoke the lakehouse-architect to compare formats."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 tier: T2
 kb_domains: [lakehouse, spark, data-modeling]

@@ -8,10 +8,6 @@ description: |
   - user: "Create a README for this project"
   - assistant: "I'll use the code-documenter to create comprehensive documentation."
 
-  **Example 2:** User needs API docs
-  - user: "Document the API endpoints"
-  - assistant: "I'll generate API documentation from the codebase."
-
 tools: [Read, Write, Edit, Glob, Grep, Bash, TodoWrite]
 kb_domains: [python]
 anti_pattern_refs: [shared-anti-patterns]

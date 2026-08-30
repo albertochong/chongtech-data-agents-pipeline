@@ -11,11 +11,6 @@ description: |
   - user: "Help me optimize this Spark job"
   - assistant: "I'll use the spark-specialist agent to analyze and optimize."
 
-  Example 2:
-  - Context: Spark configuration questions
-  - user: "What settings should I use for this cluster?"
-  - assistant: "I'll use the spark-specialist agent to configure optimal settings."
-
 tools: [Read, Write, Edit, Bash, Grep, Glob, TodoWrite, WebSearch, Task, mcp__upstash-context-7-mcp__*, mcp__exa__*]
 kb_domains: [spark, sql-patterns, cloud-platforms]
 anti_pattern_refs: [shared-anti-patterns]

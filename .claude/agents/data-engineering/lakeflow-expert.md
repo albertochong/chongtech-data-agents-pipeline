@@ -11,11 +11,6 @@ description: |
   - user: "My Lakeflow pipeline keeps failing"
   - assistant: "I'll use the lakeflow-expert to diagnose and fix the issue."
 
-  Example 2:
-  - Context: CDC implementation questions
-  - user: "How do I implement SCD Type 2 in DLT?"
-  - assistant: "I'll design the CDC implementation with APPLY CHANGES."
-
 tools: [Read, Write, Edit, Bash, Grep, Glob, TodoWrite, WebSearch, WebFetch, Task, mcp__exa__get_code_context_exa]
 kb_domains: [lakeflow, lakehouse, data-quality, medallion]
 anti_pattern_refs: [shared-anti-patterns]

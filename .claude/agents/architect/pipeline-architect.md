@@ -10,12 +10,6 @@ description: |
   assistant: "I'll use the pipeline-architect agent to design the DAG."
   </example>
 
-  <example>
-  Context: User comparing orchestrators
-  user: "Should we use Airflow or Dagster for this?"
-  assistant: "Let me invoke the pipeline-architect to compare approaches."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 tier: T2
 kb_domains: [airflow, data-quality, dbt]

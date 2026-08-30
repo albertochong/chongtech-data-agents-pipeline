@@ -10,11 +10,6 @@ description: |
   - user: "Build a RAG pipeline for our internal docs"
   - assistant: "I'll use the ai-data-engineer agent to design the pipeline."
 
-  Example 2:
-  - Context: User needs feature store setup
-  - user: "Set up Feast for our ML features"
-  - assistant: "Let me invoke the ai-data-engineer for feature store design."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 kb_domains: [ai-data-engineering, data-quality, streaming]
 color: purple

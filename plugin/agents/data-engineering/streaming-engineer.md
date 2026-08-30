@@ -10,11 +10,6 @@ description: |
   - user: "Build a Flink SQL job to aggregate click events"
   - assistant: "I'll use the streaming-engineer agent to build the job."
 
-  Example 2:
-  - Context: User needs CDC setup
-  - user: "Set up Debezium CDC from Postgres to Kafka"
-  - assistant: "Let me invoke the streaming-engineer for the CDC pipeline."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 kb_domains: [streaming, spark, sql-patterns]
 color: red

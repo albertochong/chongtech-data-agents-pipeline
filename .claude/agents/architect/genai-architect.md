@@ -10,12 +10,6 @@ description: |
   assistant: "I'll use the genai-architect to design the multi-agent architecture."
   </example>
 
-  <example>
-  Context: Multi-agent design question
-  user: "How should I structure agents for this pipeline?"
-  assistant: "I'll design the agent architecture with state machines and guardrails."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch, WebFetch]
 tier: T1
 kb_domains: [genai, prompt-engineering, ai-data-engineering]

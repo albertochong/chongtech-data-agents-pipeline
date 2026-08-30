@@ -10,12 +10,6 @@ description: |
   assistant: "I'll use the data-platform-engineer agent to compare options."
   </example>
 
-  <example>
-  Context: User needs cost optimization
-  user: "Our Snowflake bill is too high, help optimize"
-  assistant: "Let me invoke the data-platform-engineer to analyze costs."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 tier: T2
 kb_domains: [cloud-platforms, lakehouse, data-modeling]

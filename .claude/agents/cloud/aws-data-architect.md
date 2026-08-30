@@ -12,12 +12,6 @@ description: |
   assistant: "I'll use the aws-data-architect to design the serverless data pipeline."
   </example>
 
-  <example>
-  Context: User needs Lambda for data processing
-  user: "Build a Lambda function to process S3 events"
-  assistant: "I'll design the Lambda architecture with S3 triggers and Glue integration."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch]
 kb_domains: [aws, terraform, data-quality]
 anti_pattern_refs: [shared-anti-patterns]

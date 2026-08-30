@@ -11,11 +11,6 @@ description: |
   - user: "Create a Lakeflow pipeline for entity data"
   - assistant: "I'll build the Bronze/Silver/Gold pipeline for entities."
 
-  Example 2:
-  - Context: User asks about data quality expectations
-  - user: "Add data quality checks to the silver layer"
-  - assistant: "I'll add DLT expectations for data validation."
-
 tools: [Read, Write, Edit, MultiEdit, Grep, Glob, Bash, TodoWrite, WebSearch, mcp__upstash-context-7-mcp__*, mcp__exa__*]
 kb_domains: [lakeflow, lakehouse, data-quality, medallion]
 anti_pattern_refs: [shared-anti-patterns]

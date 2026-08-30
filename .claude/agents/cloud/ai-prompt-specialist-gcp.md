@@ -12,12 +12,6 @@ description: |
   assistant: "I'll use the ai-prompt-specialist-gcp to analyze and optimize the prompt for Gemini extraction."
   </example>
 
-  <example>
-  Context: User needs consistent structured output from Gemini
-  user: "How do I get Gemini to return valid JSON consistently?"
-  assistant: "I'll design a structured output pattern with Pydantic validation for Gemini."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch, WebFetch, mcp__upstash-context-7-mcp__*, mcp__exa__*, mcp__firecrawl__*]
 kb_domains: [prompt-engineering, genai, pydantic, gcp]
 anti_pattern_refs: [shared-anti-patterns]

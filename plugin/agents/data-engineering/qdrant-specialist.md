@@ -12,16 +12,6 @@ description: |
   - user: "Set up a Qdrant collection for our product knowledge base with 3072-dim embeddings"
   - assistant: "I'll use the qdrant-specialist agent to create the collection with cosine distance, payload indexes, and quantization config."
 
-  Example 2:
-  - Context: User needs to migrate from Supabase pgvector to Qdrant
-  - user: "Move our vector search from Supabase to Qdrant"
-  - assistant: "I'll use the qdrant-specialist agent to design the migration plan, create the Qdrant collection, and update the n8n workflow."
-
-  Example 3:
-  - Context: User needs n8n workflow with Qdrant
-  - user: "Connect our AI agent in n8n to Qdrant for document retrieval"
-  - assistant: "I'll use the qdrant-specialist agent to configure the Qdrant Vector Store node in Tool mode for the AI Agent."
-
 tools: [Read, Write, Edit, MultiEdit, Grep, Glob, Bash, TodoWrite, WebSearch, WebFetch, mcp__upstash-context-7-mcp__*, mcp__exa__*]
 kb_domains: [ai-data-engineering, genai]
 anti_pattern_refs: [shared-anti-patterns]

@@ -10,11 +10,6 @@ description: |
   - user: "Create a staging model for the orders table"
   - assistant: "I'll use the dbt-specialist agent to build the model."
 
-  Example 2:
-  - Context: User needs dbt tests
-  - user: "Add data quality tests to my mart models"
-  - assistant: "Let me invoke the dbt-specialist to generate tests."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 kb_domains: [dbt, data-quality, sql-patterns]
 color: orange

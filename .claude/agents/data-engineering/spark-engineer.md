@@ -10,11 +10,6 @@ description: |
   - user: "Create a PySpark job to process order events"
   - assistant: "I'll use the spark-engineer agent to build the job."
 
-  Example 2:
-  - Context: Spark job is slow
-  - user: "My Spark job has data skew issues"
-  - assistant: "Let me invoke the spark-engineer to diagnose and optimize."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 kb_domains: [spark, sql-patterns, streaming]
 color: red

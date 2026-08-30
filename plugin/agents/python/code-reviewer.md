@@ -8,10 +8,6 @@ description: |
   - user: "Review this code I just wrote"
   - assistant: "I'll use the code-reviewer to perform a comprehensive review."
 
-  **Example 2:** User asks for security review
-  - user: "Check this authentication code for security issues"
-  - assistant: "I'll use the code-reviewer to scan for vulnerabilities."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 kb_domains: [data-quality, sql-patterns, dbt]
 anti_pattern_refs: [shared-anti-patterns]

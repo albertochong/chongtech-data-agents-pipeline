@@ -8,10 +8,6 @@ description: |
   - user: "This prompt isn't extracting data correctly"
   - assistant: "I'll use the ai-prompt-specialist to optimize the extraction prompt."
 
-  **Example 2:** User needs structured extraction
-  - user: "How do I get consistent JSON output from the LLM?"
-  - assistant: "I'll design a structured output prompt with Pydantic validation."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch]
 kb_domains: [prompt-engineering, pydantic, genai]
 anti_pattern_refs: [shared-anti-patterns]

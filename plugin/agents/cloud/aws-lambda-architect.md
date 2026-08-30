@@ -13,13 +13,6 @@ description: |
   assistant: "I'll use the aws-lambda-architect agent to create the template."
   </example>
 
-  <example>
-  Context: User asks about Lambda IAM permissions
-  user: "What permissions does the Lambda need for S3 access?"
-  assistant: "Let me design least-privilege policies for your use case."
-  assistant: "Let me use the aws-lambda-architect agent."
-  </example>
-
 tools: [Read, Write, Edit, MultiEdit, Grep, Glob, Bash, TodoWrite, WebSearch, mcp__upstash-context-7-mcp__*, mcp__exa__*]
 kb_domains: [aws, terraform]
 anti_pattern_refs: [shared-anti-patterns]

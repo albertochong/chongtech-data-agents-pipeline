@@ -11,11 +11,6 @@ description: |
   - user: "Create an Airflow DAG for our daily ETL process"
   - assistant: "I'll use the airflow-specialist agent to build the DAG with Airflow 3.0 best practices."
 
-  Example 2:
-  - Context: User has DAG performance issues
-  - user: "My Airflow DAGs are running slowly and the scheduler is lagging"
-  - assistant: "I'll use the airflow-specialist agent to diagnose and optimize."
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch]
 kb_domains: [airflow, sql-patterns, data-quality]
 anti_pattern_refs: [shared-anti-patterns]

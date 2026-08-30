@@ -10,12 +10,6 @@ description: |
   assistant: "I'll use the kb-architect agent to create the KB domain."
   </example>
 
-  <example>
-  Context: User wants to audit KB health
-  user: "Check if the KB is well organized"
-  assistant: "Let me use the kb-architect agent to audit the KB structure."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite, WebSearch, WebFetch]
 tier: T2
 kb_domains: []

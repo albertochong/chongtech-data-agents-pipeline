@@ -13,13 +13,6 @@ description: |
   assistant: "I'll use the ci-cd-specialist agent to create the pipeline."
   </example>
 
-  <example>
-  Context: User wants to configure Terraform for infrastructure
-  user: "Set up Terraform modules for our S3 buckets and Lambda"
-  assistant: "I'll create reusable Terraform modules with proper state management."
-  assistant: "Let me use the ci-cd-specialist agent."
-  </example>
-
 tools: [Read, Write, Edit, MultiEdit, Grep, Glob, Bash, TodoWrite, mcp__exa__get_code_context_exa, mcp__upstash-context-7-mcp__*]
 kb_domains: [terraform, aws, lakeflow]
 anti_pattern_refs: [shared-anti-patterns]

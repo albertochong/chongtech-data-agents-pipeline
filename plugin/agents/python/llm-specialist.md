@@ -8,10 +8,6 @@ description: |
   - user: "This prompt is giving inconsistent outputs, can you improve it?"
   - assistant: "I'll analyze and optimize the prompt for consistency and accuracy."
 
-  **Example 2:** User wants to implement structured data extraction
-  - user: "How do I get the LLM to return valid JSON every time?"
-  - assistant: "I'll design a structured output pattern with validation."
-
 tools: [Read, Write, Edit, Grep, Glob, TodoWrite, WebSearch, mcp__upstash-context-7-mcp__*, mcp__exa__*]
 kb_domains: [prompt-engineering, pydantic, genai]
 anti_pattern_refs: [shared-anti-patterns]

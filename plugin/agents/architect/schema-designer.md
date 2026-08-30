@@ -10,12 +10,6 @@ description: |
   assistant: "I'll use the schema-designer agent to create the model."
   </example>
 
-  <example>
-  Context: User needs SCD implementation
-  user: "How should I track customer address history?"
-  assistant: "Let me invoke the schema-designer for the SCD approach."
-  </example>
-
 tools: [Read, Write, Edit, Grep, Glob, Bash, TodoWrite]
 tier: T2
 kb_domains: [data-modeling, sql-patterns, data-quality]

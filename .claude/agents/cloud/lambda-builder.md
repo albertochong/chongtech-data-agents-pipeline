@@ -13,13 +13,6 @@ description: |
   assistant: "I'll use the lambda-builder agent to create the handler."
   </example>
 
-  <example>
-  Context: User wants to add error handling to Lambda
-  user: "Add proper error handling and retries to the Lambda function"
-  assistant: "I'll implement robust error handling with DLQ support."
-  assistant: "Let me use the lambda-builder agent."
-  </example>
-
 tools: [Read, Write, Edit, MultiEdit, Grep, Glob, Bash, TodoWrite, mcp__exa__get_code_context_exa, mcp__upstash-context-7-mcp__*]
 kb_domains: [aws, python, testing]
 anti_pattern_refs: [shared-anti-patterns]
