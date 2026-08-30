@@ -32,10 +32,15 @@ if ! bash build-plugin.sh > /tmp/pre-push-build.log 2>&1; then
     exit 1
 fi
 
-if ! git diff --quiet -- plugin/ .claude-plugin/; then
+# --ignore-space-at-eol: some local checkouts normalize line endings
+# (CRLF) independently of what's committed. That's a line-ending detail,
+# not a plugin/.claude/ drift — comparing it as real content would block
+# every push on machines with that normalization even when nothing
+# meaningful changed.
+if ! git diff --ignore-space-at-eol --quiet -- plugin/ .claude-plugin/; then
     printf "${RED}[BLOCKED]${NC} plugin/ (or .claude-plugin/) is out of date.\n"
     echo "Rebuilding just changed tracked files — review and commit them:"
-    git --no-pager diff --stat -- plugin/ .claude-plugin/
+    git --no-pager diff --ignore-space-at-eol --stat -- plugin/ .claude-plugin/
     echo
     echo "Run: git add plugin/ .claude-plugin/ && git commit"
     exit 1
