@@ -50,6 +50,8 @@ Five phases that structure how data pipelines move from idea to production:
 
 Brainstorm is optional. You can start directly with `/define` if requirements are clear.
 
+For a file-by-file execution trace of Phase 0, see [Brainstorm Flow](brainstorm-flow.md).
+
 ### 2. Agents (the specialists)
 
 58 specialized agents, each with a specific domain:
