@@ -55,15 +55,27 @@ plugin: build ## Alias for `make build`
 spec-lint: ## Run the spec-linter component test suite (tools/spec-linter)
 	@if [ -x tools/spec-linter/.venv/bin/python ]; then \
 		( cd tools/spec-linter && .venv/bin/python -m pytest -v ); \
-	else \
+	elif python3 -c "import pydantic, yaml" >/dev/null 2>&1; then \
 		( cd tools/spec-linter && python3 -m pytest -v ); \
+	else \
+		echo "No tools/spec-linter/.venv and system python3 lacks pydantic/pyyaml."; \
+		echo "One-time setup:"; \
+		echo "  cd tools/spec-linter && uv venv --python 3.12 .venv && uv pip install -e '.[dev]'"; \
+		echo "See tools/spec-linter/README.md."; \
+		exit 1; \
 	fi
 
 spec-judge: ## Run the spec-judge component test suite (tools/spec-judge, offline)
 	@if [ -x tools/spec-judge/.venv/bin/python ]; then \
 		( cd tools/spec-judge && .venv/bin/python -m pytest -v ); \
-	else \
+	elif python3 -c "import pydantic, yaml, spec_linter" >/dev/null 2>&1; then \
 		( cd tools/spec-judge && python3 -m pytest -v ); \
+	else \
+		echo "No tools/spec-judge/.venv and system python3 lacks pydantic/pyyaml/spec_linter."; \
+		echo "One-time setup:"; \
+		echo "  cd tools/spec-judge && uv venv --python 3.12 .venv && uv pip install -e '.[dev]' -e ../spec-linter"; \
+		echo "See tools/spec-judge/README.md."; \
+		exit 1; \
 	fi
 
 # ----------------------------------------------------------------------------

@@ -161,6 +161,12 @@ it with `git push --no-verify`. The hook script itself lives at
 `scripts/git-hooks/pre-push` if you want to read or extend it, and `make install-hooks`
 still works standalone if you want to activate it without a full build.
 
+This "no setup" guarantee covers `make build`/`test`/`check` only — `tools/spec-linter`
+and `tools/spec-judge` are standalone Python packages with real dependencies
+(`pydantic`, `pyyaml`) and need a one-time `.venv` before `make spec-lint` /
+`make spec-judge` will pass. See [Setup in `tools/spec-linter/README.md`](tools/spec-linter/README.md#run-it)
+and [Setup in `tools/spec-judge/README.md`](tools/spec-judge/README.md#setup).
+
 ### Key Concepts
 
 - **`.claude/`** contains agents, commands, skills, KB, SDD — your development environment
@@ -195,7 +201,7 @@ in a browser); the short version:
 | `scripts/bump.sh` | Version-bump gate — checks `plugin.json`/`marketplace.json` version was correctly incremented | Manually (`bash scripts/bump.sh --check`) or automatically via `bump-gate.yml` on PRs |
 | `scripts/git-hooks/pre-push` | The pre-push validation hook described above | Automatically on `git push`, once `make install-hooks` has been run |
 | `tests/` | Pytest suite for `scripts/generate-agent-router.py` and `scripts/judge.py` (pure-function tests, no network calls) | `make test` |
-| `tools/spec-linter`, `tools/spec-judge` | Independent Python packages (own `pyproject.toml`) — the contract Linter and behavioral Judger used by the SDD phase commands; copied into `plugin/tools/` during build | `make spec-lint` / `make spec-judge`; used at runtime by `/design --judge`, `/build --judge`, etc. |
+| `tools/spec-linter`, `tools/spec-judge` | Independent Python packages (own `pyproject.toml`) — the contract Linter and behavioral Judger used by the SDD phase commands; copied into `plugin/tools/` during build | `make spec-lint` / `make spec-judge`; used at runtime by `/design --judge`, `/build --judge`, etc. One-time setup per package (own `.venv` + `pydantic`/`pyyaml`) — see each package's README |
 | `.github/workflows/quality-checks.yml` | Runs `pytest`, agent-router drift check, `shellcheck`, and the `tools/` test suites | Automatically on push/PR |
 | `.github/workflows/plugin-validate.yml` | Rebuilds the plugin and validates `plugin.json`/`marketplace.json`, checks for unrewritten `.claude/` paths, counts agents/skills/KBs | Automatically on push/PR touching `.claude/`, `plugin-extras/`, or `build-plugin.sh` |
 | `.github/workflows/bump-gate.yml` | Runs `scripts/bump.sh --check` | Automatically on PRs into `main`/`develop` |

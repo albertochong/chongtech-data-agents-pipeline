@@ -42,6 +42,23 @@ plus a clean one.
 Real evaluations need `OPENROUTER_API_KEY`. Requires Python 3.12 with `pydantic` and
 `pyyaml`, and the sibling `spec-linter` next to this package.
 
+## Setup
+
+`spec_judge` imports `spec_linter` at runtime but never depends on it via pip — the
+sibling package has no published wheel of its own. Install both as editable co-installs
+into one venv:
+
+```bash
+# from this directory
+uv venv --python 3.12 .venv
+. .venv/bin/activate
+uv pip install -e '.[dev]' -e ../spec-linter   # pydantic>=2,<3, pyyaml, pytest + spec_linter
+
+pytest -q
+```
+
+`make spec-judge` (run from the repo root) uses this same `.venv` if present.
+
 ## Development
 
 ```bash
