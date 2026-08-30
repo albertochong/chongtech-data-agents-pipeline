@@ -52,10 +52,10 @@ CATEGORIES = {
 
 
 @dataclass(frozen=True, slots=True)
-class ChongTech Agent Data Pipeline:
+class AgentSpec:
     """Parsed, normalized view of one agent frontmatter.
 
-    Frozen + slots — ChongTech Agent Data Pipelines are pure value objects: we build them once
+    Frozen + slots — AgentSpecs are pure value objects: we build them once
     from disk, serialize them to JSON, and never mutate. Frozen guards that
     invariant; slots eliminates the per-instance ``__dict__`` overhead.
     """
@@ -146,9 +146,9 @@ def extract_one_liner(description: str) -> str:
 
 # ── Agent discovery ──────────────────────────────────────────────────────────
 
-def discover_agents() -> list[ChongTech Agent Data Pipeline]:
+def discover_agents() -> list[AgentSpec]:
     """Walk .claude/agents/, parse each agent, return normalized specs."""
-    specs: list[ChongTech Agent Data Pipeline] = []
+    specs: list[AgentSpec] = []
     for md in sorted(AGENTS_DIR.rglob("*.md")):
         if md.name in SKIP_FILES:
             continue
@@ -164,7 +164,7 @@ def discover_agents() -> list[ChongTech Agent Data Pipeline]:
             print(f"[WARN] Skipping {rel} — no parseable frontmatter", file=sys.stderr)
             continue
 
-        specs.append(ChongTech Agent Data Pipeline(
+        specs.append(AgentSpec(
             name=str(fm["name"]),
             category=category,
             path=str(rel),
@@ -200,9 +200,9 @@ Explicit routing rules for matching tasks to the correct specialist agent. Gener
 """
 
 
-def render_category_section(specs: list[ChongTech Agent Data Pipeline]) -> str:
+def render_category_section(specs: list[AgentSpec]) -> str:
     """One table per agent category."""
-    by_category: dict[str, list[ChongTech Agent Data Pipeline]] = {}
+    by_category: dict[str, list[AgentSpec]] = {}
     for s in specs:
         by_category.setdefault(s.category, []).append(s)
 
@@ -223,7 +223,7 @@ def render_category_section(specs: list[ChongTech Agent Data Pipeline]) -> str:
     return "\n".join(out) + "\n"
 
 
-def render_kb_index(specs: list[ChongTech Agent Data Pipeline]) -> str:
+def render_kb_index(specs: list[AgentSpec]) -> str:
     """Reverse index: KB domain → agents that use it."""
     index: dict[str, list[str]] = {}
     for s in specs:
@@ -240,7 +240,7 @@ def render_kb_index(specs: list[ChongTech Agent Data Pipeline]) -> str:
     return "\n".join(out) + "\n"
 
 
-def render_one_liners(specs: list[ChongTech Agent Data Pipeline]) -> str:
+def render_one_liners(specs: list[AgentSpec]) -> str:
     """Flat list: agent name + one-line purpose. Useful for semantic matching."""
     out = ["## C. Agent One-Liners\n"]
     out.append("Single-sentence purpose per agent, derived from frontmatter `description`.\n")
@@ -295,7 +295,7 @@ python3 scripts/generate-agent-router.py
 """
 
 
-def render_skill_md(specs: list[ChongTech Agent Data Pipeline], content_hash: str) -> str:
+def render_skill_md(specs: list[AgentSpec], content_hash: str) -> str:
     header = HEADER.format(
         agent_count=len(specs),
         category_count=len({s.category for s in specs}),
@@ -304,7 +304,7 @@ def render_skill_md(specs: list[ChongTech Agent Data Pipeline], content_hash: st
     return header + render_category_section(specs) + render_kb_index(specs) + render_one_liners(specs) + STATIC_FOOTER
 
 
-def render_routing_json(specs: list[ChongTech Agent Data Pipeline]) -> str:
+def render_routing_json(specs: list[AgentSpec]) -> str:
     payload = {
         "version": 1,
         "agent_count": len(specs),
@@ -314,7 +314,7 @@ def render_routing_json(specs: list[ChongTech Agent Data Pipeline]) -> str:
     return json.dumps(payload, indent=2, sort_keys=False) + "\n"
 
 
-def content_hash_for(specs: list[ChongTech Agent Data Pipeline]) -> str:
+def content_hash_for(specs: list[AgentSpec]) -> str:
     """Stable hash over the agent specs — used to detect drift."""
     stable = json.dumps([asdict(s) for s in sorted(specs, key=lambda s: s.name)], sort_keys=True)
     return hashlib.sha256(stable.encode()).hexdigest()[:12]

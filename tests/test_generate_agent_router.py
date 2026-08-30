@@ -1,6 +1,6 @@
 """Unit tests for scripts/generate-agent-router.py pure functions.
 
-Targets the frontmatter parser, one-liner extractor, and the ChongTech Agent Data Pipeline
+Targets the frontmatter parser, one-liner extractor, and the AgentSpec
 dataclass invariant. Discovery of real agents is exercised by the
 ``--check`` integration run in CI; these tests focus on regression bait.
 """
@@ -128,11 +128,11 @@ class TestExtractOneLiner:
         assert gen.extract_one_liner("") == ""
 
 
-# ── ChongTech Agent Data Pipeline invariants ─────────────────────────────────────────────────────
+# ── AgentSpec invariants ─────────────────────────────────────────────────────
 
-class TestChongTech Agent Data Pipeline:
+class TestAgentSpec:
     def test_is_frozen(self, gen):
-        spec = gen.ChongTech Agent Data Pipeline(
+        spec = gen.AgentSpec(
             name="x", category="dev", path="p", tier="T1",
             model="sonnet", description="desc",
         )
@@ -140,7 +140,7 @@ class TestChongTech Agent Data Pipeline:
             spec.name = "y"  # type: ignore[misc]
 
     def test_defaults_empty_tuples(self, gen):
-        spec = gen.ChongTech Agent Data Pipeline(
+        spec = gen.AgentSpec(
             name="x", category="dev", path="p", tier="T1",
             model="sonnet", description="desc",
         )
@@ -148,7 +148,7 @@ class TestChongTech Agent Data Pipeline:
         assert spec.escalates_to == ()
 
     def test_accepts_tuples(self, gen):
-        spec = gen.ChongTech Agent Data Pipeline(
+        spec = gen.AgentSpec(
             name="x", category="dev", path="p", tier="T1",
             model="sonnet", description="desc",
             kb_domains=("a", "b"),
@@ -161,7 +161,7 @@ class TestChongTech Agent Data Pipeline:
 
 class TestContentHash:
     def test_identical_inputs_hash_identically(self, gen):
-        spec = gen.ChongTech Agent Data Pipeline(
+        spec = gen.AgentSpec(
             name="a", category="dev", path="p", tier="T1",
             model="sonnet", description="d",
         )
@@ -172,8 +172,8 @@ class TestContentHash:
     def test_order_independent(self, gen):
         """Generator sorts specs by name internally so hash must be stable
         regardless of input order."""
-        spec_a = gen.ChongTech Agent Data Pipeline(name="a", category="dev", path="p", tier="T1",
+        spec_a = gen.AgentSpec(name="a", category="dev", path="p", tier="T1",
                                model="sonnet", description="d")
-        spec_b = gen.ChongTech Agent Data Pipeline(name="b", category="dev", path="p", tier="T1",
+        spec_b = gen.AgentSpec(name="b", category="dev", path="p", tier="T1",
                                model="sonnet", description="d")
         assert gen.content_hash_for([spec_a, spec_b]) == gen.content_hash_for([spec_b, spec_a])

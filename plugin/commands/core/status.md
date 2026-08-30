@@ -101,7 +101,7 @@ Glob("**/go.mod")
 Glob("**/pom.xml")
 
 # KB domain alignment
-Glob(".claude/kb/*/index.md")
+Glob("${CLAUDE_PLUGIN_ROOT}/kb/*/index.md")
 ```
 
 Compare detected technologies against available KB domains and note any gaps.
