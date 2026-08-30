@@ -20,7 +20,7 @@
 SHELL := /usr/bin/env bash
 
 .DEFAULT_GOAL := help
-.PHONY: help build test check lint clean generate plugin install-deps spec-lint spec-judge install-hooks
+.PHONY: help build test check lint clean generate plugin install-deps spec-lint spec-judge install-hooks sync-agents-md
 
 # ----------------------------------------------------------------------------
 # Help
@@ -81,6 +81,9 @@ lint: ## Lint shell scripts via shellcheck (skips gracefully if not installed)
 		echo "shellcheck not installed — brew install shellcheck"; \
 		exit 0; \
 	fi
+
+sync-agents-md: ## Sync AGENTS.md <-> CLAUDE.md (newer file wins; must stay identical)
+	@bash scripts/sync-agents-md.sh
 
 clean: ## Remove generated plugin/ artifacts (keep .claude-plugin/)
 	@find plugin -mindepth 1 -maxdepth 1 \
